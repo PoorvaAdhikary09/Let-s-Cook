@@ -35,3 +35,18 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+@import '../src/theme/variables.scss';
+@import 'swiper/css';
+@import 'swiper/css/effect-fade';
+@import 'swiper/css/pagination';
+@import 'swiper/css/autoplay';
+
+
+ion-chip.custom-chip-primary {
+  --background: rgb(255, 110, 110);
+}
+
+ion-chip.custom-chip-secondary{
+    --background:rgb(187, 133, 249);
+}

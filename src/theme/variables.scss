@@ -1,2 +1,31 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+
+:root{
+   /* Brand */
+  --color-primary: #d97706;   /* saffron / spice */
+  --color-secondary: #16a34a; /* herbs */
+  --color-accent: #dc2626;    /* chili */
+
+  /* Backgrounds */
+  --color-bg-main: #fffaf3;   /* parchment */
+  --color-bg-card: #ffffff;
+
+  /* Text */
+  --color-text-main: #f1f1f1;
+  --color-text-muted: #cfcfcf;
+  --color-text-secondary:rgb(33, 32, 32);
+  --text-bg:rgba(255, 217, 0, 0.577);
+
+  // chip
+  --chip-primary:rgb(255, 110, 110);
+  --chip-secondary:rgb(187, 133, 249);
+
+  /* Borders */
+  --color-border: #e5e7eb;
+
+  /* Ionic bridge */
+  --ion-background-color: var(--color-bg-main);
+  --ion-text-color: var(--color-text-main);
+  --ion-color-primary: var(--color-primary);
+}
