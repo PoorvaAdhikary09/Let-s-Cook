@@ -1,0 +1,86 @@
+<ion-content [fullscreen]="true" class="page-content">
+  <!-- Hero's Section -->
+ <swiper-container
+  class="hero-swiper"
+  pagination="true"
+  loop="true"
+  navigation="false"
+  speed="500"
+  autoplay-delay="5000"
+>
+  @for (slide of heroSlides; track slide) {
+    <swiper-slide lazy="true">
+      <div class="hero-container">
+        <img [src]="slide.image" alt="Hero Image" class="hero-image" />
+        <div class="hero-overlay">
+          <div class="hero-content">
+            <ion-icon name="restaurant-outline" class="hero-icon"></ion-icon>
+            <h1 class="hero-title">{{ slide.title }}</h1>
+            <p class="hero-subtitle">{{ slide.subtitle }}</p>
+            <ion-button size='small' fill="solid" color="primary" [routerLink]="['/explore-meals']">
+              Explore Recipes
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+  }
+</swiper-container>
+  
+  <!-- Categories Section -->
+  <div class="categories-section">
+    <h2 class="section-title">{{category}}</h2>
+    <div class="swiper categories-swiper">
+      <swiper-container
+      #swiperRef
+        navigation="true"
+        speed="800"
+        autoplay-delay="3000"
+        loop="true"
+        css-mode="true"
+        >
+        @for (category of categories; track category) {
+          <swiper-slide lazy="true">
+            <ion-card class="category-card">
+              <img [src]="category.strCategoryThumb" alt="{{ category.name }}" class="category-image" />
+              <ion-card-header>
+                <ion-card-title class="category-name">{{ category.strCategory }}</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+        </swiper-slide>
+        }
+      </swiper-container>
+    <ion-button class='ion-no-margin' size="small" fill="solid" color="primary" (click)="getAllCategories()">
+        See All
+    </ion-button>
+  </div>
+</div>
+
+  <!-- Random Meal -->
+    <div class="random-meal-section">
+    <h2 class="section-title">Featured Meal</h2>
+    @if(randomMeal?.length){
+    <ion-card class="meal-card">
+      <img [src]="randomMeal[0].strMealThumb" alt="{{ randomMeal.strMeal }}" class="meal-image" />
+      <ion-card-header>
+        <ion-card-title class="meal-name">{{ randomMeal[0].strMeal}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="chips-container">
+          <ion-chip class="meal-chip custom-chip-primary">
+            <ion-label>{{ randomMeal[0].strCategory }}</ion-label>
+          </ion-chip>
+          <ion-chip class="meal-chip custom-chip-secondary">
+            <ion-label>{{ randomMeal[0].strArea }}</ion-label>
+          </ion-chip>
+        </div>
+      </ion-card-content>
+      </ion-card>
+      <ion-button class='ion-no-margin' size="small" fill="solid" color="primary" (click)="getDetailsOfRandomMeal(randomMeal[0].idMeal)">
+     Let's Cook
+ </ion-button>
+}
+  </div>
+  <!-- <app-scratch-card></app-scratch-card> -->
+</ion-content>
+

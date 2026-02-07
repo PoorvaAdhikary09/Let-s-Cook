@@ -11,7 +11,6 @@
 
 .hero-image {
   width: 100%;
-  height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease; // Subtle zoom on load
 }
@@ -54,20 +53,6 @@
   color:var(--color-text-muted);
 }
 
-// Swiper pagination styling
-.swiper-pagination {
-  bottom: 20px;
-}
-
-.swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.7);
-  opacity: 1;
-}
-
-.swiper-pagination-bullet-active {
-  background: #ffdb11; // Gold for active bullet
-}
-
 // Keyframe animations
 @keyframes fadeInUp {
   from {
@@ -94,14 +79,23 @@
 
 // Responsive adjustments
 @media (max-width: 768px) {
+  .hero-swiper {
+  height: 30vh; // Taller for more impact
+  }
   .hero-title {
-    font-size: 2rem;
+    font-size: 1rem;
+    margin-bottom: 2px;
   }
   .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 0.5rem;
+    margin-bottom: 10px;
   }
   .hero-icon {
-    font-size: 2.5rem;
+    font-size: 1rem;
+    margin-bottom: 3px;
+  }
+  ion-button{
+  font-size: 10px;
   }
 }
 
@@ -110,6 +104,7 @@
 .categories-section {
   padding: 20px;
   text-align: center;
+  height: max-content;
 }
 
 .section-title {
@@ -121,10 +116,12 @@
 }
 
 .categories-swiper {
-  height: auto; // Adjust based on card height
+  height: auto;
+  margin-bottom: 10px; // Adjust based on card height
 }
 
 .category-card {
+  width: 200px;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
@@ -159,75 +156,27 @@
   margin: 0;
 }
 
-// Swiper navigation and pagination styling
-// .swiper-button-next,
-// .swiper-button-prev {
-//   color: #ffd700; // Gold color for eye-catching navigation
-//   background: rgba(255, 255, 255, 0.9);
-//   border-radius: 50%;
-//   width: 50px;
-//   height: 50px;
-//   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-//   transition: transform 0.3s ease, opacity 0.3s ease;
-//   z-index: 10; // Ensure above content
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: 18px; // Icon size
-//   opacity: 0.8; // Slightly transparent by default
-// }
-
-// .swiper-button-next:hover,
-// .swiper-button-prev:hover {
-//   transform: scale(1.1);
-//   opacity: 1;
-// }
-
-// .swiper-button-next {
-//   right: 10px; // Position from right edge
-// }
-
-// .swiper-button-prev {
-//   left: 10px; // Position from left edge
-// }
-
-// .swiper-button-next,
-// .swiper-button-prev {
-//   top: 50%; // Center vertically
-//   transform: translateY(-50%);
-// }
-
-.swiper-pagination {
-  bottom: 15px;
+swiper-slide{
+  display: flex;
+  align-items: center;     
+  justify-content: center;
 }
 
-// .swiper-pagination-bullet {
-//   background: rgba(255, 255, 255, 0.7);
-//   opacity: 1;
-// }
-
-// .swiper-pagination-bullet-active {
-//   background: #ffd700; // Gold for active bullet
-// }
-
-// Responsive adjustments
-@media (max-width: 768px) {
+@media(max-width:768px){
+  .categories-section {
+    padding: 20px;
+  }
   .section-title {
-    font-size: 2rem;
+    font-size: 18px;
   }
   .category-name {
     font-size: 1rem;
   }
-  .category-image {
-    height: 120px;
-  }
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+  .category-card{
+    width: 200px;
   }
 }
+
 
 // random-meal-section.component.scss
 .random-meal-section {
@@ -274,7 +223,7 @@
 }
 
 .meal-name {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color:var(--color-text-secondary);
   text-align: center;
@@ -293,7 +242,7 @@
 
 .meal-chip{
   font-weight: 600;
-  --font-size:25px;
+  font-size:15px;
   --border-radius: 20px;
   letter-spacing: 2px;
   color:var(--color-text-secondary)
@@ -306,12 +255,23 @@
 // Responsive adjustments
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2rem;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
   .meal-name {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .meal-image {
     height: 200px;
+  }
+  .meal-card{
+    max-width: 250px;
+  }
+  .meal-name{
+    font-size: 15px;
+    padding: 5px;
+  }
+  .meal-chip{
+    font-size:12px
   }
 }

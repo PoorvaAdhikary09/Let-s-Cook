@@ -1,0 +1,124 @@
+<ion-content [fullscreen]="true" class="page-content">
+
+  <!-- Page Wrapper for Side Gaps -->
+  <div class="page-wrapper">
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <ion-searchbar
+        placeholder="Search meals..."
+        animated="true"
+        debounce="300">
+      </ion-searchbar>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-container">
+      <div class="stat-item">
+      <ion-icon name="fast-food-outline"></ion-icon>
+        <span>Total Meals: 598</span>
+      </div>
+
+      <div class="stat-item">
+        <ion-icon name="nutrition-outline"></ion-icon>
+        <span>Total Ingredients: 877</span>
+      </div>
+    </div>
+
+    <!-- Top 5 Meals -->
+    <section class="section">
+      <h2 class="section-title">Top Meals</h2>
+
+      <div class="card-grid">
+        @for (meal of meals; track meal) {
+          <ion-card class="white-card">
+            <img [src]="meal.strMealThumb" alt="Meal image" />
+            <div class="card-label">
+              {{ meal.strMeal }}
+            </div>
+          </ion-card>
+        }
+      </div>
+    </section>
+
+    <!-- Top 5 Categories -->
+     <section class="section">
+      <ion-toolbar>
+      <h2 class="section-title">Top Popular Categories</h2>
+      <ion-buttons slot="end">
+        <ion-button class='ion-no-margin' size="small" fill="outline" color="primary" (click)="getAllCategories()">
+          See All
+        </ion-button>
+        </ion-buttons>
+        </ion-toolbar>
+      <div class="card-grid">
+        @for (category of categories; track category) {
+          <ion-card class="white-card">
+            <img [src]="category.strCategoryThumb" alt="category image" />
+            <div class="card-label">
+              {{ category.strCategory }}
+            </div>
+          </ion-card>
+        }
+        
+      </div>
+    </section>
+    
+    <!-- Top 5 Ingredients -->
+    <section class="section">
+      <ion-toolbar>
+        <h2 class="section-title">Top Popular Ingredients</h2>
+      <ion-buttons slot="end">
+        <ion-button class='ion-no-margin' size="small" fill="outline" color="primary" (click)="getAllCategories()">
+          See All
+        </ion-button>
+        </ion-buttons>
+        </ion-toolbar>
+
+      <div class="card-grid">
+        @for (ingredient of ingredients; track ingredient) {
+          <ion-card class="white-card">
+            <img [src]="ingredient.strThumb" alt="Ingredient image" />
+            <div class="card-label">
+              {{ ingredient.strIngredient }}
+            </div>
+          </ion-card>
+        }
+      </div>
+    </section>
+
+<!-- Countries -->
+<section class="section">
+  <h2 class="section-title">Browse by Country</h2>
+
+  <div class="country-grid">
+    @for (item of countries; track item) {
+      <div class="country-card">
+        <img
+          class="country-flag"
+          [src]="'https://flagcdn.com/w40/' + item.code + '.png'"
+          [alt]="item.countryName + ' flag'"
+        />
+        <div class="country-name">
+          {{ item.countryName }}
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+ <!-- Alphabets -->
+    <section class="section">
+      <h2 class="section-title">Browse by Alphabet</h2>
+
+      <div class="alphabet-grid">
+        @for (letter of alphabets; track letter) {
+          <ion-chip class="alphabet-chip">
+            {{ letter }}
+          </ion-chip>
+        }
+      </div>
+    </section>
+
+  </div>
+</ion-content>

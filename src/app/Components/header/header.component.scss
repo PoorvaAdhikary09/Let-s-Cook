@@ -1,3 +1,18 @@
 div{
     display: flex;
 }
+
+@media(max-width:786px){
+    div{
+    display: flex;
+    }
+    ion-avatar{
+        img{
+         width: 55px;
+         height:55px
+        }
+    }
+    ion-title{
+        font-size: 15px;
+    }
+}

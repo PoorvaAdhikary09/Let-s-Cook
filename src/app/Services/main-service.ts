@@ -16,4 +16,12 @@ export class MainService {
    getOneRandomMeal() {
     return this.http.get(this.baseUrl + 'random.php');
   }
+
+  getAllIngredients(){
+    return this.http.get(this.baseUrl+'list.php?i=list')
+  }
+
+  filterByCategory(categoryName:string){
+    return this.http.get(this.baseUrl+'filter.php?c='+categoryName)
+  }
 }
