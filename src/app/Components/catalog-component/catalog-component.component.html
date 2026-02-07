@@ -1,0 +1,58 @@
+<ion-content fullscreen="true" class="page-content">
+   <!-- Search Bar -->
+  <div class="search-container">
+    <ion-searchbar
+     color="warning"
+      placeholder="Search categories or ingredients"
+      debounce="300"
+      show-clear-button="focus"
+    ></ion-searchbar>
+  </div>
+
+  <section>
+    @if(categories.length>0){
+      <h2 class="section-title">All Categories</h2>
+    } 
+    @if(ingredients.length>0){
+      <h2 class="section-title">All Ingredients</h2>
+    }
+  </section>
+
+  <!-- Catalog Grid -->
+ <div class="catalog-grid">
+  @if(categories.length>0){  
+  @for (category of categories; track category) {
+   <ion-card class="catalog-card">
+  <div class="image-wrapper">
+    <img
+      [src]="category.strCategoryThumb"
+      [alt]="category.strCategory"
+    />
+    <div class="overlay"></div>
+  </div>
+
+  <div class="catalog-info">
+    <h3 class="catalog-name">{{ category.strCategory }}</h3>
+  </div>
+</ion-card>
+  }
+  }
+  @if(ingredients.length>0){
+  @for (ingredient of ingredients; track ingredient) {  
+    <ion-card class="catalog-card">
+  <div class="image-wrapper">
+    <img
+      [src]="ingredient.strThumb"
+      [alt]="ingredient.strIngredient"
+    />
+    <div class="overlay"></div>
+
+</div>
+<div class="catalog-info">
+    <h3 class="catalog-name">{{ ingredient.strIngredient }}</h3>
+  </div>
+</ion-card>
+  }
+}
+</div>
+</ion-content>

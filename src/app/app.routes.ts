@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadComponent:()=> import('./Components/explore-meals/explore-meals.component').then ((m)=>m.ExploreMealsComponent),
   },
   {
+    path:'catalog',
+    loadComponent:()=> import('./Components/catalog-component/catalog-component.component').then((m)=>m.CatalogComponentComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

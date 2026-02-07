@@ -5,15 +5,18 @@ import { fastFoodOutline, nutritionOutline } from 'ionicons/icons';
 import { forkJoin } from 'rxjs';
 import { MainService } from 'src/app/Services/main-service';
 import countryData from '../../../assets/data/country.json'
-
+import { Router} from '@angular/router';
+import { BrowseType } from 'src/assets/Enum/browse.enum';
 @Component({
   selector: 'app-explore-meals',
+  standalone: true,
   templateUrl: './explore-meals.component.html',
   styleUrls: ['./explore-meals.component.scss'],
   imports: [IonContent, IonSearchbar, IonIcon, IonCard, IonChip, IonButton, IonButtons, IonToolbar],
 })
 export class ExploreMealsComponent  implements OnInit {
   private readonly mainService= inject  (MainService)
+  private readonly routerLink = inject(Router)
   ingredients: any=[]
   meals: any=[]
   categories:any=[]
@@ -42,9 +45,11 @@ export class ExploreMealsComponent  implements OnInit {
   alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
   getAllCategories(){
-
+    const querparams={pageName:BrowseType.CATEGORIES}
+    this.routerLink.navigate(['/catalog'],{queryParams:querparams})
   }
   getAllIngredients(){
-
+    const querparams={pageName:BrowseType.INGREDIENTS}
+    this.routerLink.navigate(['/catalog'],{queryParams:querparams})
   }
 }
