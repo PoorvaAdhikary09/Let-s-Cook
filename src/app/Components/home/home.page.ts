@@ -5,6 +5,8 @@ import { addIcons } from 'ionicons';
 import { restaurantOutline } from 'ionicons/icons';
 import { MainService } from '../../Services/main-service';
 import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
+import { BrowseType } from 'src/assets/Enum/browse.enum';
 import { RouterLink } from '@angular/router';
 
 register()
@@ -14,13 +16,14 @@ register()
   standalone: true,
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [ IonContent, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel,RouterLink],
+  imports: [ IonContent, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel, RouterLink],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePage implements OnInit, AfterViewInit{
 
   @ViewChild('swiperRef', { static: false }) swiperRef!: ElementRef;
   private readonly mealService = inject(MainService)
+  private readonly router = inject(Router);
 
   heroSlides = [
     {
@@ -87,7 +90,8 @@ swiperEl.initialize();
 }
 
   getAllCategories(){
-    alert('all categories fetching')
+    const querparams={pageName:BrowseType.CATEGORIES}
+    this.router.navigate(['/catalog'],{queryParams:querparams})
   }
 
   getDetailsOfRandomMeal(mealId:any){

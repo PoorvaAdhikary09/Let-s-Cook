@@ -24,4 +24,12 @@ export class MainService {
   filterByCategory(categoryName:string){
     return this.http.get(this.baseUrl+'filter.php?c='+categoryName)
   }
+
+  filterByFirstLetter(letter:string){
+    return this.http.get(this.baseUrl+'search.php?f='+letter)
+  }
+
+  filterByArea(area:string){
+    return this.http.get(this.baseUrl+'filter.php?a='+area)
+  }
 }

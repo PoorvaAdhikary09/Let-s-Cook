@@ -16,7 +16,7 @@ import { BrowseType } from 'src/assets/Enum/browse.enum';
 })
 export class ExploreMealsComponent  implements OnInit {
   private readonly mainService= inject  (MainService)
-  private readonly routerLink = inject(Router)
+  private readonly router = inject(Router)
   ingredients: any=[]
   meals: any=[]
   categories:any=[]
@@ -46,10 +46,20 @@ export class ExploreMealsComponent  implements OnInit {
 
   getAllCategories(){
     const querparams={pageName:BrowseType.CATEGORIES}
-    this.routerLink.navigate(['/catalog'],{queryParams:querparams})
+    this.router.navigate(['/catalog'],{queryParams:querparams})
   }
   getAllIngredients(){
     const querparams={pageName:BrowseType.INGREDIENTS}
-    this.routerLink.navigate(['/catalog'],{queryParams:querparams})
+    this.router.navigate(['/catalog'],{queryParams:querparams})
+  }
+
+  getMealsByFirstLetter(letter:string){
+    const querparams={pageName:BrowseType.LETTER, letter}
+    this.router.navigate(['/catalog'],{queryParams:querparams})
+  }
+
+  getMealsByArea(foodType:string){
+    const queryparams={pageName:BrowseType.FOODTYPE, foodType}
+    this.router.navigate(['/catalog'],{queryParams:queryparams})
   }
 }

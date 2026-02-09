@@ -1,58 +1,74 @@
 <ion-content fullscreen="true" class="page-content">
-   <!-- Search Bar -->
+  <!-- Search Bar -->
   <div class="search-container">
-    <ion-searchbar
-     color="warning"
-      placeholder="Search categories or ingredients"
-      debounce="300"
-      show-clear-button="focus"
-    ></ion-searchbar>
+    <ion-searchbar color="warning" placeholder="Discover meals, ingredients & cuisines" debounce="300"
+      show-clear-button="focus" [(ngModel)]="searchTerm"></ion-searchbar>
   </div>
 
   <section>
     @if(categories.length>0){
-      <h2 class="section-title">All Categories</h2>
-    } 
+    <h2 class="section-title">All Categories</h2>
+    }
     @if(ingredients.length>0){
-      <h2 class="section-title">All Ingredients</h2>
+    <h2 class="section-title">All Ingredients</h2>
+    }
+    @if (meals && meals.length > 0) {
+    <h2 class="section-title">All Meals</h2>
     }
   </section>
 
   <!-- Catalog Grid -->
- <div class="catalog-grid">
-  @if(categories.length>0){  
-  @for (category of categories; track category) {
-   <ion-card class="catalog-card">
-  <div class="image-wrapper">
-    <img
-      [src]="category.strCategoryThumb"
-      [alt]="category.strCategory"
-    />
-    <div class="overlay"></div>
-  </div>
 
-  <div class="catalog-info">
-    <h3 class="catalog-name">{{ category.strCategory }}</h3>
-  </div>
-</ion-card>
-  }
-  }
-  @if(ingredients.length>0){
-  @for (ingredient of ingredients; track ingredient) {  
+  <!-- Category cards -->
+  @if(categories.length>0 || ingredients.length>0 || (meals && meals.length > 0)){
+  <div class="catalog-grid">
+    @for (category of filteredCategories; track category) {
     <ion-card class="catalog-card">
-  <div class="image-wrapper">
-    <img
-      [src]="ingredient.strThumb"
-      [alt]="ingredient.strIngredient"
-    />
-    <div class="overlay"></div>
+      <div class="image-wrapper">
+        <img [src]="category.strCategoryThumb" [alt]="category.strCategory" />
+        <div class="overlay"></div>
+      </div>
 
-</div>
-<div class="catalog-info">
-    <h3 class="catalog-name">{{ ingredient.strIngredient }}</h3>
+      <div class="catalog-info">
+        <h3 class="catalog-name">{{ category.strCategory }}</h3>
+      </div>
+    </ion-card>
+    }
+
+   <!-- Ingredient cards -->
+    @for (ingredient of filteredIngredients; track ingredient) {
+    <ion-card class="catalog-card">
+      <div class="image-wrapper">
+        <img [src]="ingredient.strThumb" [alt]="ingredient.strIngredient" />
+        <div class="overlay"></div>
+
+      </div>
+      <div class="catalog-info">
+        <h3 class="catalog-name">{{ ingredient.strIngredient }}</h3>
+      </div>
+    </ion-card>
+    }
+
+    <!-- Meal cards -->
+    @for (meal of filteredMeals; track meal) {
+    <ion-card class="catalog-card">
+      <div class="image-wrapper">
+        <img [src]="meal.strMealThumb" [alt]="meal.strMeal" />
+        <div class="overlay"></div>
+      </div>
+      <div class="catalog-info">
+        <h3 class="catalog-name">{{ meal.strMeal }}</h3>
+      </div>
+    </ion-card>
+    }
   </div>
-</ion-card>
   }
-}
-</div>
+  <div>
+
+    @if(categories.length === 0 && ingredients.length === 0 && meals === null){
+    <div class="no-results">
+      <p>No data found !!</p>
+    </div>
+    }
+  </div>
 </ion-content>

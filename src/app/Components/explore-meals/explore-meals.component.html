@@ -93,15 +93,15 @@
   <h2 class="section-title">Browse by Country</h2>
 
   <div class="country-grid">
-    @for (item of countries; track item) {
-      <div class="country-card">
+    @for (country of countries; track country) {
+      <div class="country-card" (click)="getMealsByArea(country.foodType)">
         <img
           class="country-flag"
-          [src]="'https://flagcdn.com/w40/' + item.code + '.png'"
-          [alt]="item.countryName + ' flag'"
+          [src]="'https://flagcdn.com/w40/' + country.code + '.png'"
+          [alt]="country.countryName + ' flag'"
         />
         <div class="country-name">
-          {{ item.countryName }}
+          {{ country.countryName }}
         </div>
       </div>
     }
@@ -114,7 +114,7 @@
 
       <div class="alphabet-grid">
         @for (letter of alphabets; track letter) {
-          <ion-chip class="alphabet-chip">
+          <ion-chip class="alphabet-chip" (click)="getMealsByFirstLetter(letter)">
             {{ letter }}
           </ion-chip>
         }
