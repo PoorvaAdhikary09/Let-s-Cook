@@ -62,4 +62,9 @@ export class ExploreMealsComponent  implements OnInit {
     const queryparams={pageName:BrowseType.FOODTYPE, foodType}
     this.router.navigate(['/catalog'],{queryParams:queryparams})
   }
+
+  getMealDetails(mealId:string){
+    const queryparams={mealId}
+    this.router.navigate(['/mealDetails'],{queryParams:queryparams})
+  }
 }

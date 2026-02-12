@@ -5,7 +5,7 @@ import { addIcons } from 'ionicons';
 import { restaurantOutline } from 'ionicons/icons';
 import { MainService } from '../../Services/main-service';
 import { forkJoin } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BrowseType } from 'src/assets/Enum/browse.enum';
 import { RouterLink } from '@angular/router';
 
@@ -24,6 +24,8 @@ export class HomePage implements OnInit, AfterViewInit{
   @ViewChild('swiperRef', { static: false }) swiperRef!: ElementRef;
   private readonly mealService = inject(MainService)
   private readonly router = inject(Router);
+  private readonly browseType = BrowseType;
+  private activatedRoute = inject(ActivatedRoute)
 
   heroSlides = [
     {
@@ -95,6 +97,7 @@ swiperEl.initialize();
   }
 
   getDetailsOfRandomMeal(mealId:any){
-    console.log("Meal Id: ", mealId)
+    const querparams={mealId:mealId}
+    this.router.navigate(['/mealDetails'],{queryParams:querparams})
   }
 }

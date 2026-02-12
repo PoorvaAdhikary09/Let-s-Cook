@@ -4,4 +4,5 @@ export enum BrowseType {
   AREAS = 'areas',
   LETTER = "letter",
   FOODTYPE = "foodType",
+  MEAL = "meal"
 }

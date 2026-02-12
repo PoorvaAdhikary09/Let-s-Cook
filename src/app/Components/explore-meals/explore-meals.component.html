@@ -32,7 +32,7 @@
 
       <div class="card-grid">
         @for (meal of meals; track meal) {
-          <ion-card class="white-card">
+          <ion-card class="white-card" (click)="getMealDetails(meal.idMeal)">
             <img [src]="meal.strMealThumb" alt="Meal image" />
             <div class="card-label">
               {{ meal.strMeal }}

@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadComponent:()=> import('./Components/catalog-component/catalog-component.component').then((m)=>m.CatalogComponentComponent),
   },
   {
+    path:'mealDetails',
+    loadComponent:()=> import('./Components/meal-details/meal-details.component').then((m)=>m.MealDetailsComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

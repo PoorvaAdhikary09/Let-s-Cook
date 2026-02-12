@@ -51,7 +51,7 @@
 
     <!-- Meal cards -->
     @for (meal of filteredMeals; track meal) {
-    <ion-card class="catalog-card">
+    <ion-card class="catalog-card" (click)="getDetailsMeal(meal.idMeal)">
       <div class="image-wrapper">
         <img [src]="meal.strMealThumb" [alt]="meal.strMeal" />
         <div class="overlay"></div>

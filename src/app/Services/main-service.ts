@@ -32,4 +32,8 @@ export class MainService {
   filterByArea(area:string){
     return this.http.get(this.baseUrl+'filter.php?a='+area)
   }
+
+  getMealDetailsById(mealId:string){
+    return this.http.get(this.baseUrl+'lookup.php?i='+mealId)
+  }
 }

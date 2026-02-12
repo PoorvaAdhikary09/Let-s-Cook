@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { IonContent, IonCard, IonSearchbar } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/Services/main-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BrowseType } from 'src/assets/Enum/browse.enum';
 import { FormsModule } from '@angular/forms';
 
@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class CatalogComponentComponent implements OnInit {
   private readonly mainService = inject(MainService);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   categories: any = [];
   ingredients: any = [];
@@ -83,5 +84,8 @@ export class CatalogComponentComponent implements OnInit {
       meal.strMeal.toLowerCase().includes(this.searchTerm.toLowerCase()),
     );
   }
-
-}
+  getDetailsMeal(mealId:any){
+    const querparams={mealId:mealId}
+    this.router.navigate(['/mealDetails'],{queryParams:querparams})
+  }
+  }

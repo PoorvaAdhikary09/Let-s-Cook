@@ -1,0 +1,113 @@
+.meal-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+  padding: 16px;
+}
+
+/* MOBILE STACK */
+@media (max-width: 768px) {
+  .meal-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* LEFT */
+.left-panel {
+  text-align: center;
+}
+
+.meal-image {
+  width: 60%;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.meal-title {
+  font-weight: 800;
+  margin: 12px 0;
+}
+
+.chip-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* RIGHT */
+.section-title {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 16px;
+}
+
+.ingredient-card {
+  text-align: center;
+  margin : 12px 0
+}
+
+.ingredient-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+.ingredient-img img {
+  width: 50px;
+  height: 50px;
+}
+
+.ing-name {
+  display: block;
+  font-weight: 600;
+}
+
+.ing-measure {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* RECIPE */
+.recipe-overlay {
+  animation: fadeIn .3s ease;
+}
+
+.recipe-text {
+  line-height: 1.6;
+}
+
+.video-placeholder{
+width: fit-content;
+margin: 20px 20px 25px 0; 
+text-align: center; 
+background-color: #e53935;
+padding: 8px; border-radius: 8px;
+
+}
+.youtube-link {
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; }
+}
+
+/* SKELETON */
+.img-skeleton {
+  height: 220px;
+  border-radius: 16px;
+}

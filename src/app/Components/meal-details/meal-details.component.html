@@ -1,0 +1,98 @@
+<ion-content fullscreen class="page-content">
+
+  @defer (on viewport) {
+
+    <div class="meal-layout">
+
+      <!-- LEFT PANEL -->
+      <section class="left-panel">
+        <img
+          class="meal-image"
+          [src]="meal.strMealThumb"
+          [alt]="meal.strMeal"
+        />
+
+        <h1 class="meal-title">{{ meal.strMeal }}</h1>
+
+        <div class="chip-row">
+          <ion-chip color="primary">{{ meal.strCategory }}</ion-chip>
+          <ion-chip color="secondary">{{ meal.strArea }}</ion-chip>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL -->
+      <section class="right-panel">
+
+        <!-- INGREDIENTS -->
+        @if (!showRecipe) {
+          <h2 class="section-title">Ingredients Required</h2>
+
+          <div class="ingredients-grid">
+            @for (ing of ingredients; track ing) {
+              <div class="ingredient-card">
+                <div class="ingredient-img">
+                  <img [src]="ing.ingredientImg" [alt]="ing.ingredient" />
+                </div>
+                <span class="ing-name">{{ ing.ingredient }}</span>
+                <span class="ing-measure">{{ ing.measure }}</span>
+              </div>
+            }
+          </div>
+
+          <ion-button class="ion-margin" expand="block" (click)="toggleRecipe()">
+            Know the recipe
+          </ion-button>
+        }
+
+        <!-- RECIPE -->
+        @if (showRecipe) {
+          <div class="recipe-overlay">
+            <h2 class="section-title">How to cook</h2>
+
+            <p class="recipe-text">
+              {{ meal.strInstructions }}
+            </p>
+            
+            <div class="video-placeholder">
+              <a
+              class="youtube-link"
+              [href]="meal.strYoutube"
+              target="_blank"
+              >
+              ▶ Watch on YouTube
+            </a>
+          </div>
+
+            <ion-button fill="outline" expand="block" (click)="toggleRecipe()">
+              Back to ingredients
+            </ion-button>
+          </div>
+        }
+
+      </section>
+
+    </div>
+
+  }
+
+  @placeholder {
+    <!-- SKELETON -->
+    <div class="meal-layout skeleton">
+      <div class="left-panel">
+        <ion-skeleton-text animated class="img-skeleton"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+      </div>
+
+      <div class="right-panel">
+        @for(i of [1,2,3,4,5]; track i){
+        <ion-skeleton-text
+          animated
+          style="height: 80px"
+        ></ion-skeleton-text>
+      }
+      </div>
+    </div>
+  }
+
+</ion-content>
