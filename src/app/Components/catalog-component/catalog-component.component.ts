@@ -37,7 +37,11 @@ export class CatalogComponentComponent implements OnInit {
       if (params['pageName'] === BrowseType.INGREDIENTS) {
         this.mainService.getAllIngredients().subscribe({
           next: (res: any) => {
-            this.ingredients = res.meals;
+            const meals = res.meals || [];
+            this.ingredients = meals.map((ing: any) => ({
+              ...ing,
+              strThumb: `https://www.themealdb.com/images/ingredients/${ing.strIngredient}.png`
+            }));
           },
         });
       }

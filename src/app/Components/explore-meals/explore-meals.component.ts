@@ -33,8 +33,13 @@ export class ExploreMealsComponent  implements OnInit {
       meals : this.mainService.filterByCategory('Miscellaneous')
     }).subscribe({
       next:({ingredients, categories, meals}:any)=>{
-       this.ingredients = ingredients
-       this.ingredients = this.ingredients.meals.slice(0, 6)
+       // API doesn't return thumbs for ingredients list, so we construct them manually
+       const allIngredients = ingredients.meals || [];
+       this.ingredients = allIngredients.slice(0, 6).map((ing: any) => ({
+         ...ing,
+         strThumb: `https://www.themealdb.com/images/ingredients/${ing.strIngredient}.png`
+       }));
+
        this.categories = categories.categories.slice(0,6)
        this.meals = meals.meals.slice(0,6)
        console.log(this.meals)

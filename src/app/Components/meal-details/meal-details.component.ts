@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonContent, IonChip, IonButton, IonSkeletonText } from "@ionic/angular/standalone";
-import { forkJoin } from 'rxjs';
 import { MainService } from 'src/app/Services/main-service';
 
 @Component({
@@ -15,7 +14,6 @@ export class MealDetailsComponent  implements OnInit {
   private activatedRoute = inject(ActivatedRoute)
   meal:any=[];
   showRecipe = false;
-  allIngredients: any = [];
   ingredients: { ingredientImg: string; ingredient: string; measure: string }[] = [];
 
   constructor() { }
@@ -23,28 +21,22 @@ export class MealDetailsComponent  implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params=>{
       const mealId = params['mealId']
-      forkJoin({ 
-        mealDetails: this.mainService.getMealDetailsById(mealId),
-        ingredients: this.mainService.getAllIngredients()
-       }).subscribe(({
-        next: ({mealDetails, ingredients}:any) => {
-          this.meal = mealDetails;
-          this.allIngredients = ingredients;
-          this.meal = this.meal.meals[0];
-          console.log('Meal details fetched successfully:', this.allIngredients.meals);
+      this.mainService.getMealDetailsById(mealId).subscribe((mealDetails:any) => {
+          this.meal = mealDetails.meals[0];
+          this.ingredients = []; // Clear previous ingredients if any
+          
           for (let i = 1; i <= 20; i++) {
             const ingredient = this.meal[`strIngredient${i}`];
             const measure = this.meal[`strMeasure${i}`];
-            const ingredientImg = this.allIngredients.meals.find((ing: any) => ing.strIngredient === ingredient)?.strThumb;
-            if (ingredient && measure) {
+            
+            if (ingredient && ingredient.trim() !== "") {
+              const ingredientImg = `https://www.themealdb.com/images/ingredients/${ingredient}.png`;
               this.ingredients.push({ingredientImg, ingredient, measure});
             }
           }
-          console.log(this.ingredients)
-        }
-       }))
-      })
-    }
+      });
+    })
+  }
 
 toggleRecipe() {
   this.showRecipe = !this.showRecipe;
