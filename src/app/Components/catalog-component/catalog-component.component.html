@@ -1,8 +1,10 @@
 <ion-content fullscreen="true" class="page-content">
+
+  <div class="page-wrapper">
   <!-- Search Bar -->
   <div class="search-container">
-    <ion-searchbar color="warning" placeholder="Discover meals, ingredients & cuisines" debounce="300"
-      show-clear-button="focus" [(ngModel)]="searchTerm"></ion-searchbar>
+    <ion-searchbar color="warning" placeholder="Search..." debounce="300"
+      show-clear-button="focus" [(ngModel)]="searchTerm" animated="true"></ion-searchbar>
   </div>
 
   <section>
@@ -22,8 +24,9 @@
   <!-- Category cards -->
   @if(categories.length>0 || ingredients.length>0 || (meals && meals.length > 0)){
   <div class="catalog-grid">
+    @defer(when filteredCategories) {
     @for (category of filteredCategories; track category) {
-    <ion-card class="catalog-card">
+    <ion-card class="catalog-card" (click)="getCategoryMeals(category.strCategory)">
       <div class="image-wrapper">
         <img [src]="category.strCategoryThumb" [alt]="category.strCategory" />
         <div class="overlay"></div>
@@ -34,10 +37,11 @@
       </div>
     </ion-card>
     }
-
+  }
    <!-- Ingredient cards -->
-    @for (ingredient of filteredIngredients; track ingredient) {
-    <ion-card class="catalog-card">
+    @defer(when filteredIngredients) {
+     @for (ingredient of filteredIngredients; track ingredient) {
+     <ion-card class="catalog-card" (click)="getIngredientMeal(ingredient.strIngredient)">
       <div class="image-wrapper">
         <img [src]="ingredient.strThumb" [alt]="ingredient.strIngredient" />
         <div class="overlay"></div>
@@ -46,10 +50,11 @@
       <div class="catalog-info">
         <h3 class="catalog-name">{{ ingredient.strIngredient }}</h3>
       </div>
-    </ion-card>
+     </ion-card>
     }
-
+  }
     <!-- Meal cards -->
+    @defer(when filteredMeals) {
     @for (meal of filteredMeals; track meal) {
     <ion-card class="catalog-card" (click)="getDetailsMeal(meal.idMeal)">
       <div class="image-wrapper">
@@ -61,14 +66,18 @@
       </div>
     </ion-card>
     }
+  }
   </div>
   }
   <div>
 
-    @if(categories.length === 0 && ingredients.length === 0 && meals === null){
+    @if( filteredCategories.length === 0 &&
+  filteredIngredients.length === 0 &&
+  filteredMeals.length === 0){
     <div class="no-results">
       <p>No data found !!</p>
     </div>
     }
+  </div>
   </div>
 </ion-content>

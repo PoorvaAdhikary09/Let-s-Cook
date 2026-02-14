@@ -9,7 +9,10 @@
         color="warning"
         placeholder="Search meals..."
         animated="true"
-        debounce="300">
+        debounce="300"
+        show-clear-button="focus"
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="getMealByName(searchTerm)">
       </ion-searchbar>
     </div>
 
@@ -54,7 +57,7 @@
         </ion-toolbar>
       <div class="card-grid">
         @for (category of categories; track category) {
-          <ion-card class="white-card">
+          <ion-card class="white-card" (click)="getCategoryMeals(category.strCategory)">
             <img [src]="category.strCategoryThumb" alt="category image" />
             <div class="card-label">
               {{ category.strCategory }}
@@ -78,7 +81,7 @@
 
       <div class="card-grid">
         @for (ingredient of ingredients; track ingredient) {
-          <ion-card class="white-card">
+          <ion-card class="white-card" (click)="getIngredientMeal(ingredient.strIngredient)">
             <img [src]="ingredient.strThumb" alt="Ingredient image" />
             <div class="card-label">
               {{ ingredient.strIngredient }}

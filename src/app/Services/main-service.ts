@@ -25,12 +25,20 @@ export class MainService {
     return this.http.get(this.baseUrl+'filter.php?c='+categoryName)
   }
 
+  filterByIngredient(ingredientName:string){
+    return this.http.get(this.baseUrl+'filter.php?i='+ingredientName)
+  }
+
   filterByFirstLetter(letter:string){
     return this.http.get(this.baseUrl+'search.php?f='+letter)
   }
 
   filterByArea(area:string){
     return this.http.get(this.baseUrl+'filter.php?a='+area)
+  }
+
+  searchMealByName(mealName:string){
+    return this.http.get(this.baseUrl+'search.php?s='+mealName)
   }
 
   getMealDetailsById(mealId:string){

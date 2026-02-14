@@ -1,21 +1,5 @@
 .explore-content {
-  --background: #f6f7fb;
-}
-
-.page-wrapper {
-  padding: 16px;        // mobile first
-  padding-top: 20px;
-  margin: 0 auto;
-  max-width: 1200px; 
-}
-
-// search-bar
-
-.search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 16px;    
+  --background: var(--color-bg-main);
 }
 
 .stats-container {
@@ -30,7 +14,7 @@
         align-items: center;
         gap: 8px;
         font-weight: 500;
-        color: #e3e3e3;
+        color: var(--color-text-muted);
         
         ion-icon {
             font-size: 20px;
@@ -62,7 +46,7 @@
 /* Tablet */
 
 .white-card {
-    background: #ffffff;
+    background: var(--color-bg-card);
     border-radius: 12px;
     overflow: hidden;
     text-align: center;
@@ -73,6 +57,15 @@
         width: 100%;
         height: 120px;
     }
+
+    &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.14);
+  }
+}
+
+.white-card :hover img{
+    transform: scale(1.08);
 }
 
 ion-toolbar{
@@ -80,12 +73,12 @@ ion-toolbar{
 }
 
 .card-label {
-    background: #ffd54f;
+    background: var(--text-bg);
     bottom: 0;
     padding: 8px;
     font-weight: 600;
     font-size: 14px;
-    color: #272727;
+    color:var(--color-text-secondary);
 }
 
 // flag section

@@ -7,12 +7,14 @@ import { MainService } from 'src/app/Services/main-service';
 import countryData from '../../../assets/data/country.json'
 import { Router} from '@angular/router';
 import { BrowseType } from 'src/assets/Enum/browse.enum';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-explore-meals',
   standalone: true,
   templateUrl: './explore-meals.component.html',
   styleUrls: ['./explore-meals.component.scss'],
-  imports: [IonContent, IonSearchbar, IonIcon, IonCard, IonChip, IonButton, IonButtons, IonToolbar],
+  imports: [IonContent, IonSearchbar, IonIcon, IonCard, IonChip, IonButton, IonButtons, IonToolbar, FormsModule],
 })
 export class ExploreMealsComponent  implements OnInit {
   private readonly mainService= inject  (MainService)
@@ -21,6 +23,7 @@ export class ExploreMealsComponent  implements OnInit {
   meals: any=[]
   categories:any=[]
   countries=countryData
+  searchTerm:string=''
 
   constructor() {
     addIcons({fastFoodOutline,nutritionOutline})
@@ -72,4 +75,19 @@ export class ExploreMealsComponent  implements OnInit {
     const queryparams={mealId}
     this.router.navigate(['/mealDetails'],{queryParams:queryparams})
   }
+
+  getCategoryMeals(categoryName:string){
+    const queryparams={pageName:BrowseType.CATEGORY, categoryName}
+    this.router.navigate(['/catalog'],{queryParams:queryparams})
+  }
+
+  getIngredientMeal(ingredientName:string){
+    const queryparams={pageName:BrowseType.INGREDIENT, ingredientName}
+    this.router.navigate(['/catalog'],{queryParams:queryparams})
+  }
+
+  getMealByName(mealName:string){
+    const queryparams={pageName:BrowseType.MEAL, mealName}
+    this.router.navigate(['/catalog'],{queryParams:queryparams})
+  } 
 }

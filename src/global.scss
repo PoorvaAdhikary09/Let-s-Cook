@@ -20,13 +20,29 @@
 
 ion-chip.custom-chip-primary {
   --background: rgb(255, 110, 110);
+  --color: rgb(25, 25, 25);
 }
 
 ion-chip.custom-chip-secondary{
     --background:rgb(187, 133, 249);
+    --color: rgb(25, 25, 25);
 }
 
 .page-content {
   --padding-top: 60px;   // header height
   --padding-bottom: 70px; // footer height
+}
+
+.page-wrapper {
+  padding: 16px;        // mobile first
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1200px; 
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;    
 }

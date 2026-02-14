@@ -144,7 +144,7 @@
   color: var(--color-text-secondary);
   text-align: center;
   padding: 10px;
-  background: var(--text-bg); // Subtle gold background
+  background: var(--text-bg); 
   margin: 0;
 }
 
@@ -198,10 +198,10 @@ swiper-slide{
   cursor: pointer;
 }
 
-.meal-card:hover {
-  transform: translateY(-10px) scale(1);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-}
+// .meal-card:hover {
+//   transform: translateY(-10px) scale(1);
+//   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+// }
 
 .meal-image {
   width: 100%;
@@ -220,9 +220,9 @@ swiper-slide{
   color:var(--color-text-secondary);
   text-align: center;
   padding: 15px;
-  background:var(--text-bg); // Subtle gold background
+  background:var(--text-bg); 
   margin: 0;
-  text-transform: uppercase; // Ensure uppercase via CSS as backup
+  text-transform: uppercase;
 }
 
 .chips-container {

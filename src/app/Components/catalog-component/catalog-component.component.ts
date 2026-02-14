@@ -25,47 +25,107 @@ export class CatalogComponentComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      //activatedRoute with subscribe to get the query params from the url and check if the pageName is equal to categories or ingredients and call the respective service method to get the data and store it in the respective variable
-      if (params['pageName'] === BrowseType.CATEGORIES) {
-        this.mainService.getAllCaterogy().subscribe({
-          next: (res: any) => {
-            this.categories = res.categories;
-          },
-        });
-      }
-      if (params['pageName'] === BrowseType.INGREDIENTS) {
-        this.mainService.getAllIngredients().subscribe({
-          next: (res: any) => {
-            const meals = res.meals || [];
-            this.ingredients = meals.map((ing: any) => ({
-              ...ing,
-              strThumb: `https://www.themealdb.com/images/ingredients/${ing.strIngredient}.png`
-            }));
-          },
-        });
-      }
-    });
-    if (
-      this.activatedRoute.snapshot.queryParams['pageName'] === BrowseType.LETTER
-    ) {
-      this.letter = this.activatedRoute.snapshot.queryParams['letter'];
-      this.mainService.filterByFirstLetter(this.letter).subscribe({
-        next: (res: any) => {
-          this.meals = res.meals;
-        },
-      });
-    }
+  this.activatedRoute.queryParams.subscribe(params => {
+    this.resetState();
 
-    if(this.activatedRoute.snapshot.queryParams['pageName']===BrowseType.FOODTYPE){
-      const foodType = this.activatedRoute.snapshot.queryParams['foodType'];
-      this.mainService.filterByArea(foodType).subscribe({
-        next: (res: any) => {
-          this.meals = res.meals;
-        },
-      });
+    switch (params['pageName']) {
+
+      case BrowseType.CATEGORIES:
+        this.loadCategories();
+        break;
+
+      case BrowseType.INGREDIENTS:
+        this.loadIngredients();
+        break;
+
+      case BrowseType.LETTER:
+        this.loadMealsByLetter(params['letter']);
+        break;
+
+      case BrowseType.FOODTYPE:
+        this.loadMealsByArea(params['foodType']);
+        break;
+
+      case BrowseType.CATEGORY:
+        this.loadMealsByCategory(params['categoryName']);
+        break;
+
+      case BrowseType.INGREDIENT:
+        this.loadMealsByIngredient(params['ingredientName']);
+        break;
+
+      case BrowseType.MEAL:
+        this.loadMealsByName(params['mealName']);
+        break;
     }
+  })
+}
+
+resetState() {
+  this.categories = [];
+  this.ingredients = [];
+  this.meals = [];
+}
+
+loadCategories() {
+  this.mainService.getAllCaterogy().subscribe({next:(res:any) => {
+    const categories=res.categories || [];
+    this.categories = categories.map((cat: any) => ({
+      ...cat,
+      strCategoryThumb: `https://www.themealdb.com/images/category/${cat.strCategory}.png`
+    }));
   }
+ });
+}
+
+loadIngredients() {
+  this.mainService.getAllIngredients().subscribe({next:(res:any) => {
+    const allIngredients = res.meals || [];
+    this.ingredients = allIngredients.map((ing: any) => ({
+      ...ing,
+      strThumb: `https://www.themealdb.com/images/ingredients/${ing.strIngredient}.png`
+    }));
+  }
+  });
+}
+
+loadMealsByLetter(letter:string) {
+  this.mainService.filterByFirstLetter(letter).subscribe({next:(res:any) => {
+    this.meals = res.meals || [];
+  }
+  });
+}
+
+loadMealsByArea(area:string) {
+  this.mainService.filterByArea(area).subscribe({next:(res:any) => {
+    this.meals = res.meals || [];
+  }
+  }); 
+ }
+
+loadMealsByCategory(categoryName:string) {
+  this.resetState();
+  this.mainService.filterByCategory(categoryName).subscribe({next:(res:any) => {
+    this.meals = res.meals || [];
+  }
+  }); 
+}
+
+loadMealsByIngredient(ingredientName:string) {
+  this.resetState();
+  this.mainService.filterByIngredient(ingredientName).subscribe({next:(res:any) => {
+    this.meals = res.meals || [];
+  }
+  }); 
+}
+
+loadMealsByName(mealName:string) {
+  this.resetState();
+  this.mainService.searchMealByName(mealName).subscribe({next:(res:any) => {
+    this.meals = res.meals || [];
+  }
+  }); 
+}
 
   get filteredCategories() {
     return this.categories.filter((category: any) =>
@@ -88,6 +148,19 @@ export class CatalogComponentComponent implements OnInit {
       meal.strMeal.toLowerCase().includes(this.searchTerm.toLowerCase()),
     );
   }
+
+  getCategoryMeals(categoryName:string){
+    const queryparams={pageName:BrowseType.CATEGORY, categoryName}
+    this.router.navigate(['/catalog'],{queryParams:queryparams})
+    this.loadMealsByCategory(categoryName)
+  } 
+
+  getIngredientMeal(ingredientName:string){
+    const queryparams={pageName:BrowseType.INGREDIENT, ingredientName}
+    this.router.navigate(['/catalog'],{queryParams:queryparams})
+    this.loadMealsByIngredient(ingredientName)
+  }
+
   getDetailsMeal(mealId:any){
     const querparams={mealId:mealId}
     this.router.navigate(['/mealDetails'],{queryParams:querparams})

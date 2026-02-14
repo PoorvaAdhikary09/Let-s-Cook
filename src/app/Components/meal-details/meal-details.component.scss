@@ -38,6 +38,7 @@
 .section-title {
   font-weight: 700;
   margin-bottom: 12px;
+  color: var(--color-primary); 
 }
 
 .ingredients-grid {
@@ -55,7 +56,7 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: white;
+  background: var(--color-bg-card);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +71,7 @@
 
 .ing-name {
   display: block;
-  font-weight: 600;
+  font-size: 14px;
 }
 
 .ing-measure {
@@ -91,13 +92,13 @@
 width: fit-content;
 margin: 20px 20px 25px 0; 
 text-align: center; 
-background-color: #e53935;
+background-color:var(--color-accent);
 padding: 8px; border-radius: 8px;
 
 }
 .youtube-link {
   font-weight: 600;
-  color: #ffffff;
+  color:var(--color-text-main);
   text-decoration: none;
 }
 
