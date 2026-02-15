@@ -5,3 +5,19 @@
   font-size: 14px;
   word-break: break-all;
 }
+
+.share-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin:0.5rem 0;
+}
+
+.fb { color: #1877f2; font-size: 28px; }
+.wa { color: #25d366; font-size: 28px; }
+
+.mt {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+  color:var(--color-secondary);
+}

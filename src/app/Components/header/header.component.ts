@@ -24,11 +24,8 @@ export class HeaderComponent {
   async onShare(){
     const modal = await this.modalController.create({
       component: ShareModalComponent,
-      componentProps: {
-        url: window.location.href
-      },
-      breakpoints: [0, 0.4],
-      initialBreakpoint: 0.4,
+      breakpoints: [0, 0.5],
+      initialBreakpoint: 0.5,
     });
     return await modal.present();
   }
