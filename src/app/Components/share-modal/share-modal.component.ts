@@ -25,19 +25,36 @@ export class ShareModalComponent {
   }
 
   copyLink() {
-    this.clipboard.copy(this.url);
-    this.presentToast('Link copied to clipboard');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(this.url).then(() => {
+      this.presentToast('Link copied!');
+    });
+  } else {
+    // last-resort fallback
+    const input = document.createElement('input');
+    input.value = this.url;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    this.presentToast('Link copied!');
+  }
   }
 
   async nativeShare() {
-    if (navigator.share) {
-      await navigator.share({
-        title: 'Check this recipe 🍽️',
-        url: this.url,
-      });
-    } else {
-      this.presentToast('Sharing not supported on this device');
-    }
+    const url = window.location.href;
+
+  if (navigator.share) {
+    navigator.share({
+      title: 'Let’s Cook 🍳',
+      text: 'Check out this recipe!',
+      url,
+    }).catch(() => {
+      // user cancelled – ignore
+    });
+  } else {
+    this.copyLink();
+  }
   }
 
   close() {
