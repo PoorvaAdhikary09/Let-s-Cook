@@ -44,7 +44,7 @@
         css-mode="true"
         >
         @for (category of categories; track category) {
-          <swiper-slide lazy="true">
+          <swiper-slide lazy="true" (click)="getMealsByCategory(category.strCategory)">
             <ion-card class="category-card">
               <img [src]="category.strCategoryThumb" alt="{{ category.name }}" class="category-image" />
               <ion-card-header>
@@ -91,6 +91,6 @@
 }
   </div>
   <!-- <app-scratch-card></app-scratch-card> -->
+  <app-footer></app-footer>
 </ion-content>
-<app-footer></app-footer>
 

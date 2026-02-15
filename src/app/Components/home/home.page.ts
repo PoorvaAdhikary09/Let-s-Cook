@@ -101,4 +101,9 @@ swiperEl.initialize();
     const querparams={mealId:mealId}
     this.router.navigate(['/mealDetails'],{queryParams:querparams})
   }
+
+  getMealsByCategory(categoryName:any){
+    const querparams={pageName:BrowseType.CATEGORY,categoryName:categoryName}
+    this.router.navigate(['/catalog'],{queryParams:querparams})
+  }
 }
