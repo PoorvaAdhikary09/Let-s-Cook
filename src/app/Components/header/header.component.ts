@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { IonToolbar, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton, IonBackButton } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import {shareSocialOutline} from 'ionicons/icons'
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { ShareModalComponent } from '../share-modal/share-modal.component';
 
 
@@ -26,6 +26,7 @@ export class HeaderComponent {
       component: ShareModalComponent,
       breakpoints: [0, 0.5],
       initialBreakpoint: 0.5,
+      backdropDismiss: true,
     });
     return await modal.present();
   }

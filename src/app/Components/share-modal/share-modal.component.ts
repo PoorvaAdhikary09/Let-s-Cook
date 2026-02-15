@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonIcon, IonInput } from "@ionic/angular/standalone";
 import { Clipboard } from '@angular/cdk/clipboard';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { ToastController } from '@ionic/angular'; 
 import { addIcons } from 'ionicons';
 import { closeOutline, linkOutline, logoFacebook, logoWhatsapp } from 'ionicons/icons';
 
 @Component({
   selector: 'app-share-modal',
+  standalone: true,
   templateUrl: './share-modal.component.html',
   styleUrls: ['./share-modal.component.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonIcon, IonInput],
