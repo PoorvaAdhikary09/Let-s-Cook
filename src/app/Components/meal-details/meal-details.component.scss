@@ -24,7 +24,8 @@
 }
 
 .meal-title {
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: bold;
   margin: 12px 0;
 }
 
@@ -111,4 +112,17 @@ padding: 8px; border-radius: 8px;
 .img-skeleton {
   height: 220px;
   border-radius: 16px;
+}
+
+.skeleton-meal-layout{
+  width: 80%;
+  height: 265px;
+  background: var(--color-skeleton);
+  border-radius: 16px;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.6; }
 }

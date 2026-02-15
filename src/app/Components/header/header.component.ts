@@ -1,22 +1,35 @@
-import { Component } from '@angular/core';
-import { IonToolbar, IonHeader, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton } from "@ionic/angular/standalone";
+import { Component, inject } from '@angular/core';
+import { IonToolbar, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton, IonBackButton } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import {shareSocialOutline} from 'ionicons/icons'
+import { ModalController } from '@ionic/angular';
+import { ShareModalComponent } from '../share-modal/share-modal.component';
 
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  imports: [IonToolbar, IonHeader, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton],
+  imports: [IonToolbar, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton, IonBackButton],
+  providers: [ModalController]
 })
 export class HeaderComponent {
+  private modalController = inject(ModalController)
 
   constructor() { 
       addIcons({ shareSocialOutline });
   }
 
-  onShare(){
-    alert('shared button clicked')
+  async onShare(){
+    const modal = await this.modalController.create({
+      component: ShareModalComponent,
+      componentProps: {
+        url: window.location.href
+      },
+      breakpoints: [0, 0.4],
+      initialBreakpoint: 0.4,
+    });
+    return await modal.present();
   }
 }

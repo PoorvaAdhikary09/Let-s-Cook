@@ -1,4 +1,7 @@
-<ion-content [fullscreen]="true" class="page-content">
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+<ion-content [fullscreen]="true">
 
   <!-- Page Wrapper for Side Gaps -->
   <div class="page-wrapper">
@@ -33,6 +36,10 @@
     <section class="section">
       <h2 class="section-title">Top Meals</h2>
 
+      @if(isLoading){
+         <div class="skeleton-card"></div>
+      }
+
       <div class="card-grid">
         @for (meal of meals; track meal) {
           <ion-card class="white-card" (click)="getMealDetails(meal.idMeal)">
@@ -55,6 +62,11 @@
         </ion-button>
         </ion-buttons>
         </ion-toolbar>
+
+           @if(isLoading){
+         <div class="skeleton-card"></div>
+      }
+
       <div class="card-grid">
         @for (category of categories; track category) {
           <ion-card class="white-card" (click)="getCategoryMeals(category.strCategory)">
@@ -78,6 +90,10 @@
         </ion-button>
         </ion-buttons>
         </ion-toolbar>
+
+           @if(isLoading){
+         <div class="skeleton-card"></div>
+      }
 
       <div class="card-grid">
         @for (ingredient of ingredients; track ingredient) {
@@ -123,6 +139,6 @@
         }
       </div>
     </section>
-
   </div>
 </ion-content>
+<app-footer></app-footer>

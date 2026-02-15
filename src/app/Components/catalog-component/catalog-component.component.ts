@@ -1,15 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IonContent, IonCard, IonSearchbar } from '@ionic/angular/standalone';
+import { IonContent, IonCard, IonSearchbar, IonHeader } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/Services/main-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowseType } from 'src/assets/Enum/browse.enum';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-catalog-component',
   templateUrl: './catalog-component.component.html',
   styleUrls: ['./catalog-component.component.scss'],
-  imports: [IonContent, IonCard, IonSearchbar, FormsModule],
+  imports: [IonContent, IonCard, IonSearchbar, FormsModule, IonHeader, HeaderComponent, FooterComponent],
 })
 export class CatalogComponentComponent implements OnInit {
   private readonly mainService = inject(MainService);
@@ -21,6 +23,7 @@ export class CatalogComponentComponent implements OnInit {
   meals: any = [];
   searchTerm: string = '';
   letter: string = '';
+  isLoading: boolean = true;
 
   constructor() {}
 
@@ -74,6 +77,7 @@ loadCategories() {
       ...cat,
       strCategoryThumb: `https://www.themealdb.com/images/category/${cat.strCategory}.png`
     }));
+    this.isLoading=false
   }
  });
 }
@@ -85,6 +89,7 @@ loadIngredients() {
       ...ing,
       strThumb: `https://www.themealdb.com/images/ingredients/${ing.strIngredient}.png`
     }));
+    this.isLoading=false
   }
   });
 }
@@ -92,6 +97,7 @@ loadIngredients() {
 loadMealsByLetter(letter:string) {
   this.mainService.filterByFirstLetter(letter).subscribe({next:(res:any) => {
     this.meals = res.meals || [];
+    this.isLoading=false
   }
   });
 }
@@ -99,6 +105,7 @@ loadMealsByLetter(letter:string) {
 loadMealsByArea(area:string) {
   this.mainService.filterByArea(area).subscribe({next:(res:any) => {
     this.meals = res.meals || [];
+    this.isLoading=false
   }
   }); 
  }
@@ -107,6 +114,7 @@ loadMealsByCategory(categoryName:string) {
   this.resetState();
   this.mainService.filterByCategory(categoryName).subscribe({next:(res:any) => {
     this.meals = res.meals || [];
+    this.isLoading=false
   }
   }); 
 }
@@ -115,6 +123,7 @@ loadMealsByIngredient(ingredientName:string) {
   this.resetState();
   this.mainService.filterByIngredient(ingredientName).subscribe({next:(res:any) => {
     this.meals = res.meals || [];
+    this.isLoading=false
   }
   }); 
 }
@@ -123,6 +132,7 @@ loadMealsByName(mealName:string) {
   this.resetState();
   this.mainService.searchMealByName(mealName).subscribe({next:(res:any) => {
     this.meals = res.meals || [];
+    this.isLoading=false
   }
   }); 
 }
@@ -152,12 +162,14 @@ loadMealsByName(mealName:string) {
   getCategoryMeals(categoryName:string){
     const queryparams={pageName:BrowseType.CATEGORY, categoryName}
     this.router.navigate(['/catalog'],{queryParams:queryparams})
+    this.isLoading=true
     this.loadMealsByCategory(categoryName)
   } 
 
   getIngredientMeal(ingredientName:string){
     const queryparams={pageName:BrowseType.INGREDIENT, ingredientName}
     this.router.navigate(['/catalog'],{queryParams:queryparams})
+    this.isLoading=true
     this.loadMealsByIngredient(ingredientName)
   }
 

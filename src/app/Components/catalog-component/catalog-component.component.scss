@@ -99,3 +99,18 @@
   color: var(--color-text-muted);
   margin-top: 24px;
 }
+
+/*Skeleton Card Styles*/
+.skeleton-card {
+  width: 80vw;
+  height: 220px;
+  background: var(--color-skeleton);
+  border-radius: 16px;
+  margin: 8px;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% {opacity: 0.6;}
+  50% {opacity: 0.3;}
+  100% {opacity: 0.6;}
+}

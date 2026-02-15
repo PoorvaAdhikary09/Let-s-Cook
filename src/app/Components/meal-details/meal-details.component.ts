@@ -1,13 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonContent, IonChip, IonButton, IonSkeletonText } from "@ionic/angular/standalone";
+import { IonContent, IonChip, IonButton, IonSkeletonText, IonHeader } from "@ionic/angular/standalone";
 import { MainService } from 'src/app/Services/main-service';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-meal-details',
   templateUrl: './meal-details.component.html',
   styleUrls: ['./meal-details.component.scss'],
-  imports: [IonContent, IonChip, IonButton, IonSkeletonText],
+  imports: [IonContent, IonChip, IonButton, IonHeader, HeaderComponent, FooterComponent],
 })
 export class MealDetailsComponent  implements OnInit {
   private mainService = inject(MainService)
@@ -15,6 +17,7 @@ export class MealDetailsComponent  implements OnInit {
   meal:any=[];
   showRecipe = false;
   ingredients: { ingredientImg: string; ingredient: string; measure: string }[] = [];
+  isLoading:boolean=true
 
   constructor() { }
 
@@ -34,6 +37,7 @@ export class MealDetailsComponent  implements OnInit {
               this.ingredients.push({ingredientImg, ingredient, measure});
             }
           }
+          this.isLoading=false;
       });
     })
   }

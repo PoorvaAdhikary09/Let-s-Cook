@@ -1,18 +1,23 @@
-<ion-content fullscreen class="page-content">
-
-  @defer (on viewport) {
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+<ion-content fullscreen>
 
     <div class="meal-layout">
 
       <!-- LEFT PANEL -->
       <section class="left-panel">
-        <img
-          class="meal-image"
-          [src]="meal.strMealThumb"
-          [alt]="meal.strMeal"
-        />
+        @if(isLoading){
+          <div class="skeleton-meal-layout"></div>
+       } @else {
+         <img
+           class="meal-image"
+           [src]="meal.strMealThumb"
+           [alt]="meal.strMeal"
+         />
+       }
 
-        <h1 class="meal-title">{{ meal.strMeal }}</h1>
+        <h2 class="meal-title">{{ meal.strMeal }}</h2>
 
         <div class="chip-row">
           <ion-chip class="custom-chip-primary">{{ meal.strCategory }}</ion-chip>
@@ -27,6 +32,9 @@
         @if (!showRecipe) {
           <h2 class="section-title">Ingredients Required</h2>
 
+          @if(isLoading){
+            <div class="skeleton-meal-layout"></div>
+          }
           <div class="ingredients-grid">
             @for (ing of ingredients; track ing) {
               <div class="ingredient-card">
@@ -68,31 +76,7 @@
             </ion-button>
           </div>
         }
-
       </section>
-
     </div>
-
-  }
-
-  @placeholder {
-    <!-- SKELETON -->
-    <div class="meal-layout skeleton">
-      <div class="left-panel">
-        <ion-skeleton-text animated class="img-skeleton"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
-      </div>
-
-      <div class="right-panel">
-        @for(i of [1,2,3,4,5]; track i){
-        <ion-skeleton-text
-          animated
-          style="height: 80px"
-        ></ion-skeleton-text>
-      }
-      </div>
-    </div>
-  }
-
 </ion-content>
+<app-footer></app-footer>

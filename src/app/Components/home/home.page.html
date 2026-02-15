@@ -1,4 +1,7 @@
-<ion-content [fullscreen]="true" class="page-content">
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+<ion-content [fullscreen]="true">
   <!-- Hero's Section -->
  <swiper-container
   class="hero-swiper"
@@ -29,13 +32,15 @@
   <!-- Categories Section -->
   <div class="categories-section">
     <h2 class="section-title">{{category}}</h2>
+    @if(isLoading){
+     <div class="skeleton-card"></div>
+    }
     <div class="swiper categories-swiper">
       <swiper-container
       #swiperRef
         navigation="true"
         speed="800"
         autoplay-delay="3000"
-        loop="true"
         css-mode="true"
         >
         @for (category of categories; track category) {
@@ -58,6 +63,11 @@
   <!-- Random Meal -->
     <div class="random-meal-section">
     <h2 class="section-title">Featured Meal</h2>
+
+    @if(isLoading){
+         <div class="feature-card"></div>
+    }
+
     @if(randomMeal?.length){
     <ion-card class="meal-card">
       <img [src]="randomMeal[0].strMealThumb" alt="{{ randomMeal.strMeal }}" class="meal-image" />
@@ -82,4 +92,5 @@
   </div>
   <!-- <app-scratch-card></app-scratch-card> -->
 </ion-content>
+<app-footer></app-footer>
 

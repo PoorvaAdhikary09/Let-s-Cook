@@ -267,3 +267,26 @@ swiper-slide{
     font-size:12px
   }
 }
+
+.skeleton-card {
+  height: 300px;
+  width:100vw;
+  padding: 8px;
+  background: var(--color-skeleton);
+  animation: pulse 1.5s infinite;
+  border-radius: 8px;
+}
+
+.feature-card {
+  height: 460px;
+  width:40vw;
+  padding: 8px;
+  background: var(--color-skeleton);
+  animation: pulse 1.5s infinite;
+  border-radius: 8px;
+}
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

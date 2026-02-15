@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ScratchCardComponent } from './scratch-card.component';
+import { ShareModalComponent } from './share-modal.component';
 
-describe('ScratchCardComponent', () => {
-  let component: ScratchCardComponent;
-  let fixture: ComponentFixture<ScratchCardComponent>;
+describe('ShareModalComponent', () => {
+  let component: ShareModalComponent;
+  let fixture: ComponentFixture<ShareModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScratchCardComponent ],
+      declarations: [ ShareModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ScratchCardComponent);
+    fixture = TestBed.createComponent(ShareModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

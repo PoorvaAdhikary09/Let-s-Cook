@@ -1,22 +1,22 @@
 import { Component, OnInit, inject,CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
-import { IonContent, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel,IonHeader } from "@ionic/angular/standalone";
 import { register } from 'swiper/element/bundle';
 import { addIcons } from 'ionicons';
 import { restaurantOutline } from 'ionicons/icons';
 import { MainService } from '../../Services/main-service';
 import { forkJoin } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { BrowseType } from 'src/assets/Enum/browse.enum';
 import { RouterLink } from '@angular/router';
-
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 register()
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [ IonContent, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel, RouterLink],
+  imports: [ IonContent, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel, RouterLink,HeaderComponent,FooterComponent,IonHeader],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePage implements OnInit, AfterViewInit{
@@ -25,7 +25,6 @@ export class HomePage implements OnInit, AfterViewInit{
   private readonly mealService = inject(MainService)
   private readonly router = inject(Router);
   private readonly browseType = BrowseType;
-  private activatedRoute = inject(ActivatedRoute)
 
   heroSlides = [
     {
@@ -47,6 +46,7 @@ export class HomePage implements OnInit, AfterViewInit{
   category="Explore Categories"
   categories:any=[]
   randomMeal:any
+  isLoading:boolean=true
 
   constructor(){
     addIcons({restaurantOutline})
@@ -60,6 +60,7 @@ export class HomePage implements OnInit, AfterViewInit{
   next: ({ categories, randomMeal }: any) => {
     this.categories = categories.categories;
     this.randomMeal = randomMeal.meals;
+    this.isLoading=false
   },
   error: err => console.error(err)
 });
