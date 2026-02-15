@@ -34,7 +34,17 @@ Explore meals by **category, ingredient, region, alphabet, or name**, and dive i
 - Toggleable **“How to Cook”** recipe section
 - Styled YouTube tutorial link
 
-### 🦴 Skeleton Loading (Angular `@defer`)
+## 🔗 Share Functionality
+
+- Global Share button available across pages
+- Opens a dedicated Share Modal
+- Users can:
+  - Copy the deployed application URL
+  - Share the link via supported platforms
+- Implemented using Ionic Modal architecture
+- Designed to be lightweight and non-intrusive
+
+### 🦴 Skeleton Loading
 - Skeleton placeholders shown until data loads
 - Smooth perceived performance
 - No layout shifts
@@ -72,6 +82,7 @@ src/
 │   │   ├── header/
 │   │   ├── footer/
 |   |   ├── explore-meals/
+|   |   ├── share-modal/
 |   |   └── home/
 │   │
 │   ├── services/
@@ -139,15 +150,24 @@ ionic serve
 TheMealDB
 https://www.themealdb.com/api.php
 
+## 🌗 Theme Support (Current & Future)
+Current Behavior
+- The application is optimized for Dark Mode
+- Best experience is achieved when the device or browser is set to dark mode
+- UI colors and contrast are currently tuned for dark environments
+
+Future Scope
+- Full Light Mode / Dark Mode toggle
+- Theme persistence using local storage or system preference
+- Smooth theme transitions using CSS variables
+- User-controlled theme switching from the app header
+
 ## 🧠 Learning Outcomes
 
-Advanced Angular routing patterns
-
-Standalone component architecture
-
-Responsive UI with Ionic
-
-Skeleton loading using Angular control flow
+- Advanced Angular routing patterns
+- Standalone component architecture
+- Responsive UI with Ionic
+- Skeleton loading using Angular control flow
 
 Clean state handling without overengineering
 
