@@ -1,0 +1,50 @@
+.auth-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 24px;
+  --padding-bottom: 16px;
+}
+
+.auth-form {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+ion-input{
+    margin-bottom: 8px;
+}
+
+.error-text {
+  font-size: 12px;
+  color: #ff4d4f;
+  margin: 4px 4px 12px;
+}
+
+.flex-spacer {
+  flex: 1;
+}
+
+.login-btn {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.my-red-toast{
+    --background: #ff4d4f;
+    --color: #fff;
+}

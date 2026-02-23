@@ -1,0 +1,53 @@
+<ion-content class="auth-content">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="auth-form">
+
+    <!-- Title -->
+    <h2 class="auth-title">Log In</h2>
+    <p class="auth-subtitle">Welcome back to Let’s Cook 🍳</p>
+
+    <!-- Email -->
+   
+      <ion-input
+        fill="outline"
+        label="Email"
+        labelPlacement="floating"
+        formControlName="email">
+      </ion-input>
+  
+   @if(loginForm.get('email')?.touched && loginForm.get('email')?.invalid){
+      <p class="error-text">
+        Please enter a valid email address
+      </p>
+    }
+
+    <!-- Password -->
+   
+      <ion-input
+        type="password"
+        fill="outline"
+        label="Password"
+        labelPlacement="floating"
+        formControlName="password">
+      </ion-input>
+   
+    @if(loginForm.get('password')?.touched && loginForm.get('password')?.invalid){
+      <p class="error-text">
+        Password must be at least 6 characters long
+      </p>
+    }
+  
+    <!-- Spacer pushes button down -->
+    <div class="flex-spacer"></div>
+
+    <!-- Submit Button -->
+    <ion-button
+      type="submit"
+      expand="block"
+      color="primary"
+      [disabled]="loginForm.invalid"
+      class="login-btn">
+      Log In
+    </ion-button>
+
+  </form>
+</ion-content>

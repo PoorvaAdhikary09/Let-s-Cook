@@ -1,0 +1,83 @@
+<ion-content class="auth-content">
+  <form [formGroup]="signupForm" (ngSubmit)="onSignup()" class="auth-form">
+   <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button fill="clear" color="medium" (click)="cancel()">
+            <ion-icon slot="icon-only" name="close-circle-outline" color="danger"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    <ion-title>
+      <h2 class="auth-title">Create Account</h2>
+    </ion-title>
+ </ion-toolbar>
+
+    <p class="auth-subtitle">Join Let’s Cook and start sharing your recipes 🍳</p>
+
+    <!-- Name -->
+    
+      <ion-input
+        fill="outline"
+        label="Name"
+        labelPlacement="floating"
+        formControlName="username">
+      </ion-input>
+  
+    @if(signupForm.get('username')?.touched && signupForm.get('username')?.invalid){
+      <p class="error-text">
+        Please enter your name
+      </p>
+    }
+
+    <!-- Email -->
+   
+      <ion-input
+        fill="outline"
+        label="Email"
+        labelPlacement="floating"
+        formControlName="email">
+      </ion-input>
+  
+   @if(signupForm.get('email')?.touched && signupForm.get('email')?.invalid){
+      <p class="error-text">
+        Please enter a valid email address
+      </p>
+    }
+
+    <!-- Password -->
+   
+      <ion-input
+        type="password"
+        fill="outline"
+        label="Password"
+        labelPlacement="floating"
+        formControlName="password">
+      </ion-input>
+   
+    @if(signupForm.get('password')?.touched && signupForm.get('password')?.invalid){
+      <p class="error-text">
+        Password must be at least 6 characters long
+      </p>
+    }
+  
+    <!-- Spacer pushes button down -->
+    <div class="flex-spacer"></div>
+
+    <!-- Submit Button -->
+    <ion-button
+      type="submit"
+      expand="block"
+      color="primary"
+      [disabled]="signupForm.invalid"
+      class="signup-btn">
+      Sign Up
+    </ion-button>
+
+    <div>
+      <p class="auth-footer-text">
+        Already have an account?
+        <a (click)="onLogin(); cancel()">Log In</a>
+      </p>
+    </div>
+
+  </form>
+</ion-content>

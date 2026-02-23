@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { IonToolbar, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton, IonBackButton } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import {shareSocialOutline} from 'ionicons/icons'
+import {enterOutline, shareSocialOutline} from 'ionicons/icons'
 import { ModalController } from '@ionic/angular/standalone';
 import { ShareModalComponent } from '../share-modal/share-modal.component';
+import { SignupFormComponent } from '../Auth/signup-form/signup-form.component';
+import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
 
 
 @Component({
@@ -16,16 +18,30 @@ import { ShareModalComponent } from '../share-modal/share-modal.component';
 })
 export class HeaderComponent {
   private modalController = inject(ModalController)
+  private supabaseService = inject(Supabase);
 
   constructor() { 
-      addIcons({ shareSocialOutline });
+      addIcons({ shareSocialOutline,enterOutline });
   }
+  
+ async getSession() {
+    const { data } = await this.supabaseService.getSession();
+    console.log(data.session);
+}
 
   async onShare(){
     const modal = await this.modalController.create({
       component: ShareModalComponent,
       breakpoints: [0, 0.5],
       initialBreakpoint: 0.5,
+      backdropDismiss: true,
+    });
+    return await modal.present();
+  }
+
+  async signUp(){
+    const modal = await this.modalController.create({
+      component: SignupFormComponent,
       backdropDismiss: true,
     });
     return await modal.present();
