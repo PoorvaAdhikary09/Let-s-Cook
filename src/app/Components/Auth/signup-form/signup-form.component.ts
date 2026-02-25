@@ -6,6 +6,7 @@ import { closeCircleOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
 import { LoginFormComponent } from '../login-form/login-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -19,6 +20,7 @@ export class SignupFormComponent  implements OnInit {
   private modalCtrl= inject(ModalController);
   private toastCtrl: ToastController = inject(ToastController);
   private supabaseService = inject(Supabase);
+  private readonly router = inject(Router);
 
   signupForm = this.fb.group({
     username: ['', Validators.required],
@@ -63,12 +65,13 @@ export class SignupFormComponent  implements OnInit {
   async onLogin(){
     const modalCtrl = await this.modalCtrl.create({
       component: LoginFormComponent,
-      backdropDismiss: true,
+      backdropDismiss: false,
     });
     return await modalCtrl.present();
   }
 
   cancel() {
     this.modalCtrl.dismiss(null, 'cancel');
+    this.router.navigate(['/home']);
   }
 }

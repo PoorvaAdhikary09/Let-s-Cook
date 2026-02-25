@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators,ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IonContent, IonInput, IonButton } from "@ionic/angular/standalone";
 import { ModalController, ToastController } from '@ionic/angular/standalone';
 import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
@@ -20,6 +21,7 @@ export class LoginFormComponent  implements OnInit {
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
   private supabaseService = inject(Supabase);
+  private router = inject(Router);
 
   constructor() { }
 
@@ -49,6 +51,13 @@ export class LoginFormComponent  implements OnInit {
     }
 
     this.modalCtrl.dismiss(data, 'success');
+      const toast = await this.toastCtrl.create({
+        message: 'Login successful!',
+        duration: 3000,
+        cssClass: 'my-green-toast'
+      });
+      await toast.present();
+    this.router.navigate(['/']);
   }
 
   ngOnInit() {}

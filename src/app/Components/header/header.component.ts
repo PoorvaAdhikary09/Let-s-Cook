@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { IonToolbar, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton, IonBackButton } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import {enterOutline, shareSocialOutline} from 'ionicons/icons'
+import {enterOutline, menuOutline, shareSocialOutline} from 'ionicons/icons'
 import { ModalController } from '@ionic/angular/standalone';
 import { ShareModalComponent } from '../share-modal/share-modal.component';
 import { SignupFormComponent } from '../Auth/signup-form/signup-form.component';
 import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
+import { MenuController } from '@ionic/angular/standalone';
 
 
 @Component({
@@ -19,15 +20,18 @@ import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
 export class HeaderComponent {
   private modalController = inject(ModalController)
   private supabaseService = inject(Supabase);
+  private menuCtrl = inject(MenuController);
+
+  isLoggedIn = false;
+  userName: string | null = null;
 
   constructor() { 
-      addIcons({ shareSocialOutline,enterOutline });
+      addIcons({ shareSocialOutline,enterOutline, menuOutline });
+    this.supabaseService.session$.subscribe(session => {
+    this.isLoggedIn = !!session;
+    this.userName = session?.user?.user_metadata?.['name'] ?? null;
+});  
   }
-  
- async getSession() {
-    const { data } = await this.supabaseService.getSession();
-    console.log(data.session);
-}
 
   async onShare(){
     const modal = await this.modalController.create({
@@ -42,8 +46,12 @@ export class HeaderComponent {
   async signUp(){
     const modal = await this.modalController.create({
       component: SignupFormComponent,
-      backdropDismiss: true,
+      backdropDismiss: false,
     });
     return await modal.present();
+  }
+
+  openMenu(){
+    this.menuCtrl.open();
   }
 }

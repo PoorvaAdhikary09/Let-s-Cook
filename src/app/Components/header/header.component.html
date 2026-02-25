@@ -13,8 +13,18 @@
         <ion-button (click)="onShare()">
           <ion-icon slot="icon-only" name="share-social-outline" color="warning"></ion-icon>
         </ion-button>
-        <ion-button (click)="signUp()">
-          <ion-icon slot="icon-only" name="enter-outline" color="primary"></ion-icon>
-        </ion-button>   
-      </ion-buttons>
+      <!-- GUEST -->
+      @if(isLoggedIn === false){
+       <ion-button (click)="signUp()">
+        <ion-icon slot="icon-only" name="enter-outline" color="primary"></ion-icon>
+      </ion-button>
+       }
+
+      <!-- LOGGED IN -->
+       @if(isLoggedIn){
+       <ion-button color="primary" (click)="openMenu()">
+         <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+        </ion-button>
+        }
+     </ion-buttons>  
   </ion-toolbar>
