@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1.4fr;
   gap: 20px;
   padding: 16px;
+  position: relative;
 }
 
 /* MOBILE STACK */
@@ -126,4 +127,33 @@ padding: 8px; border-radius: 8px;
   0% { opacity: 0.6; }
   50% { opacity: 0.3; }
   100% { opacity: 0.6; }
+}
+
+// Blurred Layer
+
+.blurred {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.overlay {
+  position: fixed;  
+  inset: 0;
+  z-index: 1000;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: white;
+  padding: 24px;
+
+  height: 100vh;     
+  width: 100%;
 }

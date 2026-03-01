@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { IonToolbar, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton, IonBackButton } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import {enterOutline, menuOutline, shareSocialOutline} from 'ionicons/icons'
+import {enterOutline, fingerPrintOutline, menuOutline, shareSocialOutline} from 'ionicons/icons'
 import { ModalController } from '@ionic/angular/standalone';
 import { ShareModalComponent } from '../share-modal/share-modal.component';
 import { SignupFormComponent } from '../Auth/signup-form/signup-form.component';
@@ -26,7 +26,8 @@ export class HeaderComponent {
   userName: string | null = null;
 
   constructor() { 
-      addIcons({ shareSocialOutline,enterOutline, menuOutline });
+    addIcons({ shareSocialOutline,enterOutline, menuOutline, fingerPrintOutline });
+
     this.supabaseService.session$.subscribe(session => {
     this.isLoggedIn = !!session;
     this.userName = session?.user?.user_metadata?.['name'] ?? null;

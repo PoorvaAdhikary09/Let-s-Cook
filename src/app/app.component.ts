@@ -8,18 +8,27 @@ import { Supabase } from './Services/Supabase-Service/supabase';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet, AppMenuComponent, SignupFormComponent],
+  imports: [IonApp, IonRouterOutlet, AppMenuComponent],
 })
 export class AppComponent {
   private readonly modalCtrl = inject(ModalController);
   private readonly supabaseService = inject(Supabase);
   private signupOpened = false;
+  private sessionChecked = false;
+
 
   constructor() {
      this.supabaseService.session$.subscribe(session => {
-    if (!session) {
-      setTimeout(() => this.openSignupOnce(), 3000);
+
+    // Wait until we know session state
+    if (!this.sessionChecked) {
+      this.sessionChecked = true;
+
+      if (!session) {
+        setTimeout(() => this.openSignupOnce(), 3000);
+      }
     }
+
   });
   }
 

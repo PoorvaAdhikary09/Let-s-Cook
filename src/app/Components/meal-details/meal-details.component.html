@@ -26,7 +26,7 @@
       </section>
 
       <!-- RIGHT PANEL -->
-      <section class="right-panel">
+      <section class="right-panel" [class.blurred]="!isLoggedIn">
 
         <!-- INGREDIENTS -->
         @if (!showRecipe) {
@@ -77,6 +77,16 @@
           </div>
         }
       </section>
+       <!-- Lock Overlay -->
+       @if (!isLoggedIn) {
+       <div class="overlay">
+        <ion-icon name="lock-closed-outline" size="large"></ion-icon>
+         <h2>Login to unlock this recipe</h2>
+        <ion-button (click)="openSignup()">
+          Sign Up
+        </ion-button>
+       </div>
+      } 
     </div>
   </ion-content>
   <app-footer></app-footer>

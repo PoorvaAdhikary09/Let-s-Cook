@@ -57,7 +57,6 @@ export class LoginFormComponent  implements OnInit {
         cssClass: 'my-green-toast'
       });
       await toast.present();
-    this.router.navigate(['/']);
   }
 
   ngOnInit() {}

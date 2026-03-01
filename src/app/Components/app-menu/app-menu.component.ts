@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonMenu, IonContent, IonItem, IonLabel, IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { logOutOutline, personCircleOutline } from 'ionicons/icons';
+import { appsOutline, fastFoodOutline, gridOutline, homeOutline, logOutOutline, personCircleOutline } from 'ionicons/icons';
 import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
 
 @Component({
@@ -17,7 +17,7 @@ export class AppMenuComponent {
   userName = '';
 
   constructor() {
-   addIcons({ personCircleOutline, logOutOutline });
+   addIcons({ personCircleOutline, logOutOutline, homeOutline, appsOutline, gridOutline, fastFoodOutline });
 
     this.supabase.session$.subscribe(session => {
       this.userName = session?.user?.user_metadata?.['name'] ?? '';
