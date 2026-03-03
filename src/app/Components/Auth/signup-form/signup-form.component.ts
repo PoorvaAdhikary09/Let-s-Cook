@@ -54,6 +54,7 @@ export class SignupFormComponent  implements OnInit {
     const toast = await this.toastCtrl.create({
       message: 'Signup failed. Please try again.',
       duration: 3000,
+      cssClass: 'my-red-toast'
     });
     await toast.present();
     return;

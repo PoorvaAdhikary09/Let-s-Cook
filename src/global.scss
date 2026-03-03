@@ -15,6 +15,7 @@
 @import "@ionic/angular/css/flex-utils.css";
 @import '@ionic/angular/css/palettes/dark.system.css';
 @import '../src/theme/variables.scss';
+@import '../src//theme/size.scss';
 
 
 
@@ -47,3 +48,16 @@ ion-chip.custom-chip-secondary{
     margin-bottom: 16px;    
 }
 
+.my-green-toast {
+  --background: rgb(0, 74, 0);
+  --color: white;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.my-red-toast{
+  --background: linear-gradient(135deg, rgb(246, 35, 35), rgb(238, 0, 0));
+  --color: white;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}

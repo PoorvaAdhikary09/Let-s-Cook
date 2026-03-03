@@ -37,6 +37,7 @@
 .hero-icon {
   font-size: 3rem;
   margin-bottom: 10px;
+  color:var(--banner-text-main)
 }
 
 .hero-title {
@@ -44,13 +45,13 @@
   font-weight: bold;
   margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  color:var(--color-text-main)
+  color:var(--banner-text-main)
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
   margin-bottom: 30px;
-  color:var(--color-text-muted);
+  color:var(--banner-text-muted);
 }
 
 // Keyframe animations
@@ -197,11 +198,6 @@ swiper-slide{
   background: linear-gradient(135deg, #fff 0%, #eaeaea 100%);
   cursor: pointer;
 }
-
-// .meal-card:hover {
-//   transform: translateY(-10px) scale(1);
-//   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-// }
 
 .meal-image {
   width: 100%;

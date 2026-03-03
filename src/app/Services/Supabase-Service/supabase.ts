@@ -31,7 +31,7 @@ export class Supabase {
     if (data.session !== this._session.value) {
     this._session.next(data.session);
   }
- }
+  }
 
   get client() {
     return this.supabase;

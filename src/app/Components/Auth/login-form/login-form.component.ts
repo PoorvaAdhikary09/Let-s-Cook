@@ -47,6 +47,7 @@ export class LoginFormComponent  implements OnInit {
         cssClass: 'my-red-toast'
       });
       await toast.present();
+      this.loginForm.reset();
       return;
     }
 
