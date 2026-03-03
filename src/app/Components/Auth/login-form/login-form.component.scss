@@ -12,14 +12,14 @@
 }
 
 .auth-title {
-  font-size: 22px;
+  font-size: var(--fs-h3);
   font-weight: 700;
   margin-bottom: 4px;
   text-align: center;
 }
 
 .auth-subtitle {
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--color-text-muted);
   margin-bottom: 24px;
   text-align: center;
@@ -30,7 +30,7 @@ ion-input{
 }
 
 .error-text {
-  font-size: 12px;
+  font-size: var(--fs-smaller);
   color: #ff4d4f;
   margin: 4px 4px 12px;
 }

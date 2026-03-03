@@ -21,6 +21,15 @@
             color: var(--ion-color-primary);
         }
     }
+    @media(max-width: 768px){
+        .stat-item{
+          font-size: var(--fs-smaller);
+
+          ion-icon{
+              font-size: var(--fs-small);
+           }
+       }
+    }
 }
 
 .section {
@@ -28,12 +37,16 @@
 }
 
 .section-title {
-    font-size: 18px;
+    font-size: var(--fs-h3);
     font-weight: 600;
     margin-bottom: 12px;
     text-align: center;
 }
-
+@media(max-width: 768px){
+    .section-title{
+        font-size:var(--fs-body);
+    }
+}
 .card-grid {
     display: grid;
     gap: 16px;
@@ -77,7 +90,7 @@ ion-toolbar{
     bottom: 0;
     padding: 8px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: var(--fs-small);
     color:var(--color-text-secondary);
 }
 
@@ -111,7 +124,7 @@ ion-toolbar{
 }
 
 .country-name {
-    font-size: 12px;
+    font-size: var(--fs-smaller);
     font-weight: 600;
     color:var(--ion-color-primary);
     margin-top: 5px;

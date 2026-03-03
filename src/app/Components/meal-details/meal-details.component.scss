@@ -25,7 +25,7 @@
 }
 
 .meal-title {
-  font-size: 18px;
+  font-size: var(--fs-body);
   font-weight: bold;
   margin: 12px 0;
 }
@@ -38,10 +38,16 @@
 
 /* RIGHT */
 .section-title {
-  font-size: 18px;
+  font-size: var(--fs-h3);
   font-weight: bold;
   margin-bottom: 12px;
   color: var(--color-primary); 
+}
+
+@media (max-width: 768px) {
+  .section-title {
+  font-size: var(--fs-small);
+  }
 }
 
 .ingredients-grid {
@@ -74,21 +80,24 @@
 
 .ing-name {
   display: block;
-  font-size: 14px;
+  font-size: var(--fs-small);
 }
 
 .ing-measure {
-  font-size: 12px;
+  font-size: var(--fs-smaller);
   opacity: 0.7;
 }
 
 /* RECIPE */
 .recipe-overlay {
   animation: fadeIn .3s ease;
+  p{
+    font-size: var(--fs-small);
+  }
 }
 
 .recipe-text {
-  line-height: 1.6;
+  line-height: var(--lh-body);
 }
 
 .video-placeholder{

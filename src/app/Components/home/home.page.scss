@@ -96,7 +96,7 @@
     margin-bottom: 3px;
   }
   ion-button{
-  font-size: 10px;
+  font-size: var(--fs-smallest);
   }
 }
 
@@ -140,7 +140,7 @@
 }
 
 .category-name {
-  font-size: 1.2rem;
+  font-size: var(--fs-small);
   font-weight: 600;
   color: var(--color-text-secondary);
   text-align: center;
@@ -160,10 +160,10 @@ swiper-slide{
     padding: 20px;
   }
   .section-title {
-    font-size: 18px;
+    font-size: var(--fs-h3);
   }
   .category-name {
-    font-size: 1rem;
+    font-size: var(--fs-small);
   }
   .category-card{
     width: 200px;
@@ -181,7 +181,7 @@ swiper-slide{
 }
 
 .section-title {
-  font-size: 28px;
+  font-size: var(--fs-h2);
   font-weight: bold;
   color:var(--color-text-main);
   margin-bottom: 30px;
@@ -211,7 +211,7 @@ swiper-slide{
 }
 
 .meal-name {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: bold;
   color:var(--color-text-secondary);
   text-align: center;
@@ -229,10 +229,9 @@ swiper-slide{
 }
 
 .meal-chip{
-  font-weight: 600;
-  font-size:var(--fs-smallest);
+  font-weight: bold;
   --border-radius: 20px;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   color:var(--color-text-secondary);
 }
 
@@ -243,11 +242,11 @@ swiper-slide{
 // Responsive adjustments
 @media (max-width: 768px) {
   .section-title {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: var(--fs-body);
+    margin-bottom: var(--fs-smallest);
   }
   .meal-name {
-    font-size: 1rem;
+    font-size: var(--fs-small);
   }
   .meal-image {
     height: 200px;
@@ -256,11 +255,12 @@ swiper-slide{
     max-width: 250px;
   }
   .meal-name{
-    font-size: 15px;
+    font-size: var(--fs-smaller);
     padding: 5px;
   }
   .meal-chip{
-    font-size:var(--fs-smallest)
+    font-weight: bold;
+    font-size:var(--fs-smaller)
   }
 }
 
@@ -274,7 +274,7 @@ swiper-slide{
 }
 
 .feature-card {
-  height: 460px;
+  height: 450px;
   width:40vw;
   padding: 8px;
   background: var(--color-skeleton);

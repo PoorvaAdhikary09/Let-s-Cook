@@ -15,7 +15,15 @@ ion-label{
 ion-icon{
   margin-right: 8px
 }
+ 
 
 .label{
   font-size: var(--fs-small);
 }
+
+ @media(max-width: 768px){
+  .label{
+    font-size: var(--fs-smaller);
+  }
+ }
+ 

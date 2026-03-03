@@ -16,17 +16,23 @@ ion-toolbar{
 }
 
 .auth-title {
-  font-size: 22px;
+  font-size: var(--fs-h3);
   font-weight: 700;
   margin-bottom: 4px;
   text-align: center;
 }
 
 .auth-subtitle {
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--color-text-muted);
   margin-bottom: 24px;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+   .auth-subtitle{
+    font-size: var(--fs-smaller);
+   }
 }
 
 ion-input{

@@ -7,10 +7,16 @@
 }
 
 .section-title {
-    font-size: 22px;
+    font-size: var(--fs-h3);
     font-weight: 600;
     margin-bottom: 12px;
     text-align: center;
+}
+
+@media (max-width: 768px) {
+   .section-title{
+     font-size: var(--fs-body);
+   }
 }
 
 /*Grid*/
@@ -86,7 +92,7 @@
 }
 
 .catalog-name {
-  font-size: 14px;
+  font-size: var(--fs-small);
   font-weight: 600;
   color:var(--color-text-secondary);
   margin: 0;
@@ -95,7 +101,7 @@
 
 .no-results {
   text-align: center;
-  font-size: 18px;
+  font-size: var(--fs-body);
   color: var(--color-text-muted);
   margin-top: 24px;
 }
