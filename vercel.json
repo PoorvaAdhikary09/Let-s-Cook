@@ -1,5 +1,4 @@
 {
-  "buildCommand": "node generate-env.js && ng build --configuration production",
   "outputDirectory": "www",
   "framework": null
 }

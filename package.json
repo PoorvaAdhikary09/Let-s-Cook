@@ -6,7 +6,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "node generate-env.js && ng build --configuration production",
+    "build": "ng build --configuration production",
+    "vercel-build": "node generate-env.js && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
