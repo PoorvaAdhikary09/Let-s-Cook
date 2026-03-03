@@ -14,20 +14,13 @@ const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn(
     'WARNING: SUPABASE_URL or SUPABASE_ANON_KEY environment variables are not set. ' +
-    'The build will proceed but Supabase will not be configured.'
+    'Supabase will not be configured correctly.'
   );
 }
 
-// environment.ts (used for development builds)
+// Single environment.ts — works for both dev and prod builds.
+// The generate-env.js script is only run during CI/Vercel builds.
 const envContent = `export const environment = {
-  production: false,
-  supabaseUrl: '${supabaseUrl}',
-  supabaseAnonKey: '${supabaseAnonKey}'
-};
-`;
-
-// environment.prod.ts (used for production builds on Vercel)
-const envProdContent = `export const environment = {
   production: true,
   supabaseUrl: '${supabaseUrl}',
   supabaseAnonKey: '${supabaseAnonKey}'
@@ -35,6 +28,5 @@ const envProdContent = `export const environment = {
 `;
 
 fs.writeFileSync(path.join(envDir, 'environment.ts'), envContent);
-fs.writeFileSync(path.join(envDir, 'environment.prod.ts'), envProdContent);
 
-console.log('✅ Environment files generated successfully from environment variables.');
+console.log('✅ environment.ts generated successfully from environment variables.');
