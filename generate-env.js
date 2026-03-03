@@ -10,6 +10,7 @@ if (!fs.existsSync(envDir)) {
 
 const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
+const mealDbUrl = process.env.MEAL_DB_URL || ''
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn(
@@ -23,7 +24,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
 const envContent = `export const environment = {
   production: true,
   supabaseUrl: '${supabaseUrl}',
-  supabaseAnonKey: '${supabaseAnonKey}'
+  supabaseAnonKey: '${supabaseAnonKey}',
+  mealDbApiURL: '${mealDbUrl}'
 };
 `;
 

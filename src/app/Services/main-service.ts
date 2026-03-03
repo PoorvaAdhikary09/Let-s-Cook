@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/Environments/environments';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MainService {
-   public baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
+   public baseUrl = environment.mealDbApiURL ;
 
    constructor(private http: HttpClient){}
 

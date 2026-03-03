@@ -41,7 +41,7 @@
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: var(--fs-h1);
   font-weight: bold;
   margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -49,7 +49,7 @@
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
+  font-size: var(--fs-body);
   margin-bottom: 30px;
   color:var(--banner-text-muted);
 }
@@ -84,11 +84,11 @@
   height: 30vh; // Taller for more impact
   }
   .hero-title {
-    font-size: 1rem;
+    font-size: var(--fs-small);
     margin-bottom: 2px;
   }
   .hero-subtitle {
-    font-size: 0.5rem;
+    font-size:var(--fs-smaller);
     margin-bottom: 10px;
   }
   .hero-icon {
@@ -230,10 +230,10 @@ swiper-slide{
 
 .meal-chip{
   font-weight: 600;
-  font-size:15px;
+  font-size:var(--fs-smallest);
   --border-radius: 20px;
   letter-spacing: 2px;
-  color:var(--color-text-secondary)
+  color:var(--color-text-secondary);
 }
 
 .meal-chip:hover {
@@ -260,7 +260,7 @@ swiper-slide{
     padding: 5px;
   }
   .meal-chip{
-    font-size:12px
+    font-size:var(--fs-smallest)
   }
 }
 
