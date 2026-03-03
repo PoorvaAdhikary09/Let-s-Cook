@@ -59,13 +59,7 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-               {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.example.ts"
-                }
-               ]
+              "namedChunks": true
             },
             "ci": {
               "progress": false
