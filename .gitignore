@@ -70,4 +70,4 @@ testem.log
 Thumbs.db
 
 # Supabase environment files
-src/environments/environment.example.ts
+/src/environments/
