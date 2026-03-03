@@ -1,4 +1,4 @@
 window.__env = {
   supabaseUrl: 'YOUR_URL',
-  supabaseKey: 'YOUR_KEY'
+  supabaseAnonKey: 'YOUR_KEY'
 };
