@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environments';
 
-@Injectable({
+@Injectable({      //Angular creates only ONE instance of this service. This is called a Singleton Service.
   providedIn: 'root',
 })
 export class MainService {

@@ -24,9 +24,9 @@ export class AppComponent {
     if (!this.sessionChecked) {
       this.sessionChecked = true;
 
-  if (!session) {
+    if (!session) {
         setTimeout(() => this.openSignupOnce(), 3000);
-   }
+    }
   }
 
   });
