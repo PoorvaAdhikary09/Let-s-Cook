@@ -7,6 +7,16 @@ Explore meals by **category, ingredient, region, alphabet, or name**, and dive i
 
 ## 🚀 Features
 
+### 🔐 Authentication Integration (Supabase)
+
+**This project now includes full authentication powered by Supabase.**
+
+- User Sign Up (Email & Password)
+- User Login
+- Secure Session Handling
+- Logout Functionality
+- Persistent Authentication State
+
 ### 🔍 Smart Browsing
 - Browse meals by:
   - Categories
@@ -34,7 +44,7 @@ Explore meals by **category, ingredient, region, alphabet, or name**, and dive i
 - Toggleable **“How to Cook”** recipe section
 - Styled YouTube tutorial link
 
-## 🔗 Share Functionality
+### 🔗 Share Functionality
 
 - Global Share button available across pages
 - Opens a dedicated Share Modal
@@ -56,6 +66,17 @@ Explore meals by **category, ingredient, region, alphabet, or name**, and dive i
   - Tablet
   - Desktop
 
+ ### 🌗 Light & Dark Mode Support
+
+The application now fully supports both Light Mode and Dark Mode.
+
+- Automatically adapts to system theme preference
+- Maintains UI consistency across devices
+- Optimized color variables for readability
+- Seamless switching without layout break
+
+The theme is handled using CSS variables and ```prefers-color-scheme``` media queries to ensure cross-platform compatibility.
+
 ---
 
 ## 🛠️ Tech Stack
@@ -67,6 +88,9 @@ Explore meals by **category, ingredient, region, alphabet, or name**, and dive i
 - Angular Router
 - RxJS
 - TheMealDB API
+- Supabase (Backend as a Service)
+- Supabase Auth (Email/Password based authentication)
+Authentication is handled securely using Supabase's ```anon public key```, with proper environment configuration for development and production builds.
 
 ---
 
@@ -77,6 +101,10 @@ src/
 │
 ├── app/
 │   ├── components/
+|   │   ├──app-menu/
+|   │   ├──Auth
+|   |        ├──login-form/
+|   |        └──signup-form/
 │   │   ├── catalog-component/
 │   │   ├── meal-details/
 │   │   ├── header/
@@ -86,6 +114,8 @@ src/
 |   |   └── home/
 │   │
 │   ├── services/
+│   ├── ├──Supabase-Service
+│   |     └──supabase.ts
 │   │   └── main-service.ts
 │   │
 │   └── app.component.ts
@@ -150,26 +180,17 @@ ionic serve
 TheMealDB
 https://www.themealdb.com/api.php
 
-## 🌗 Theme Support (Current & Future)
-Current Behavior
-- The application is optimized for Dark Mode
-- Best experience is achieved when the device or browser is set to dark mode
-- UI colors and contrast are currently tuned for dark environments
-
-Future Scope
-- Full Light Mode / Dark Mode toggle
-- Theme persistence using local storage or system preference
-- Smooth theme transitions using CSS variables
-- User-controlled theme switching from the app header
-
 ## 🧠 Learning Outcomes
 
-- Advanced Angular routing patterns
-- Standalone component architecture
-- Responsive UI with Ionic
-- Skeleton loading using Angular control flow
-
-Clean state handling without overengineering
+- Advanced Angular routing patterns with authenticated route handling
+- Standalone component architecture for modular and scalable development
+- Supabase integration for authentication and backend connectivity
+- Secure session management and environment configuration
+- Responsive UI design using Ionic components
+- Light & Dark mode implementation using CSS variables and system theme detection
+- Skeleton loading and conditional rendering using modern Angular control flow
+- Production deployment workflow using Vercel
+- Clean state handling without overengineering
 
 ## 👩‍💻 Author
 
