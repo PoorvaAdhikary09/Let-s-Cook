@@ -5,8 +5,8 @@ import {enterOutline, fingerPrintOutline, menuOutline, shareSocialOutline} from 
 import { ModalController } from '@ionic/angular/standalone';
 import { ShareModalComponent } from '../share-modal/share-modal.component';
 import { SignupFormComponent } from '../Auth/signup-form/signup-form.component';
-import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
 import { MenuController } from '@ionic/angular/standalone';
+import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
 
 
 @Component({
@@ -19,8 +19,8 @@ import { MenuController } from '@ionic/angular/standalone';
 })
 export class HeaderComponent {
   private modalController = inject(ModalController)
-  private supabaseService = inject(Supabase);
   private menuCtrl = inject(MenuController);
+  private readonly authService = inject(AuthService);
 
   isLoggedIn = false;
   userName: string | null = null;
@@ -28,11 +28,13 @@ export class HeaderComponent {
   constructor() { 
     addIcons({ shareSocialOutline,enterOutline, menuOutline, fingerPrintOutline });
 
-    this.supabaseService.session$.subscribe(session => {
-    this.isLoggedIn = !!session;
-    this.userName = session?.user?.user_metadata?.['name'] ?? null;
-});  
-  }
+    this.authService.authState$.subscribe(isLoggedIn => {
+    this.isLoggedIn = isLoggedIn;
+
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    this.userName = user?.name ?? null;
+   });
+ }
 
   async onShare(){
     const modal = await this.modalController.create({

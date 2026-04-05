@@ -4,11 +4,11 @@ import { IonContent, IonChip, IonButton, IonHeader, IonIcon } from "@ionic/angul
 import { MainService } from 'src/app/Services/main-service';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
-import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
 import { addIcons } from 'ionicons';
 import { lockClosedOutline } from 'ionicons/icons';
 import { ModalController } from '@ionic/angular/standalone';
 import { SignupFormComponent } from 'src/app/Components/Auth/signup-form/signup-form.component';
+import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
 
 @Component({
   selector: 'app-meal-details',
@@ -19,8 +19,8 @@ import { SignupFormComponent } from 'src/app/Components/Auth/signup-form/signup-
 export class MealDetailsComponent  implements OnInit {
   private mainService = inject(MainService)
   private activatedRoute = inject(ActivatedRoute)
-  private supabaseService = inject(Supabase)
   private modalCtrl = inject(ModalController)
+  private readonly authService = inject(AuthService);
 
   meal:any=[];
   showRecipe = false;
@@ -33,9 +33,10 @@ export class MealDetailsComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.supabaseService.session$.subscribe(session => {
-    this.isLoggedIn = !!session;
-    })
+    this.authService.authState$.subscribe(isLoggedIn => {
+    this.isLoggedIn = isLoggedIn;
+   });
+
     this.activatedRoute.queryParams.subscribe(params=>{
       const mealId = params['mealId']
       this.mainService.getMealDetailsById(mealId).subscribe((mealDetails:any) => {
@@ -66,6 +67,14 @@ async openSignup(){
     backdropDismiss: false
   });
   await modal.present(); 
+
+
+   const { role } = await modal.onDidDismiss();
+   if (role === 'success') {
+   this.authService.authState$.subscribe(isLoggedIn => {    
+     this.isLoggedIn = isLoggedIn;
+   });
+  }
  } 
  
 }

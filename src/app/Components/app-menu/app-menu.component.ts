@@ -3,8 +3,8 @@ import { RouterLink } from '@angular/router';
 import { IonMenu, IonContent, IonItem, IonLabel, IonIcon, IonMenuToggle } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import { appsOutline, fastFoodOutline, gridOutline, homeOutline, logOutOutline, personCircleOutline } from 'ionicons/icons';
-import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
 import { AlertController, ToastController  } from '@ionic/angular/standalone';
+import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
 
 @Component({
   selector: 'app-app-menu',
@@ -14,7 +14,7 @@ import { AlertController, ToastController  } from '@ionic/angular/standalone';
   imports: [IonMenu, IonContent, IonItem, IonLabel, RouterLink, IonIcon, IonMenuToggle],
 })
 export class AppMenuComponent {
-  private supabase = inject(Supabase);
+  private readonly authService = inject(AuthService);
   private readonly alertCtrl = inject(AlertController)
   private readonly toastCtrl = inject(ToastController)
   userName = '';
@@ -22,9 +22,9 @@ export class AppMenuComponent {
   constructor() {
    addIcons({ personCircleOutline, logOutOutline, homeOutline, appsOutline, gridOutline, fastFoodOutline });
 
-    this.supabase.session$.subscribe(session => {
-      this.userName = session?.user?.user_metadata?.['name'] ?? '';
-    });
+    const user = this.authService.getCurrentUser();
+    this.userName = user ? user.name : '';
+
   }
 
   async logout() {
@@ -40,7 +40,7 @@ export class AppMenuComponent {
         text: 'Logout',
         role: 'destructive',
         handler: async () => {
-          await this.supabase.logout();
+          this.authService.logout();
           await this.presentToast()
         }
       }

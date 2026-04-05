@@ -8,23 +8,14 @@ if (!fs.existsSync(envDir)) {
   fs.mkdirSync(envDir, { recursive: true });
 }
 
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
-const mealDbUrl = process.env.MEAL_DB_URL || ''
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn(
-    'WARNING: SUPABASE_URL or SUPABASE_ANON_KEY environment variables are not set. ' +
-    'Supabase will not be configured correctly.'
-  );
-}
+// const supabaseUrl = process.env.SUPABASE_URL || '';
+// const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
+const mealDbUrl = process.env.MEAL_DB_URL || '';
 
 // Single environment.ts — works for both dev and prod builds.
 // The generate-env.js script is only run during CI/Vercel builds.
 const envContent = `export const environment = {
   production: true,
-  supabaseUrl: '${supabaseUrl}',
-  supabaseAnonKey: '${supabaseAnonKey}',
   mealDbApiURL: '${mealDbUrl}'
 };
 `;

@@ -3,7 +3,7 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { AppMenuComponent } from './Components/app-menu/app-menu.component';
 import { ModalController } from '@ionic/angular/standalone';
 import { SignupFormComponent } from './Components/Auth/signup-form/signup-form.component';
-import { Supabase } from './Services/Supabase-Service/supabase';
+import { AuthService } from './Services/Auth-Service/auth-service';
 
 @Component({
   selector: 'app-root',
@@ -12,24 +12,22 @@ import { Supabase } from './Services/Supabase-Service/supabase';
 })
 export class AppComponent {
   private readonly modalCtrl = inject(ModalController);
-  private readonly supabaseService = inject(Supabase);
+  private readonly authService = inject(AuthService);
+
   private signupOpened = false;
   private sessionChecked = false;
 
 
   constructor() {
-     this.supabaseService.session$.subscribe(session => {
+     const isLoggedIn = this.authService.isLoggedIn();
 
-    // Wait until we know session state
-    if (!this.sessionChecked) {
-      this.sessionChecked = true;
+      if (!this.sessionChecked) {
+        this.sessionChecked = true;
 
-    if (!session) {
-        setTimeout(() => this.openSignupOnce(), 3000);
-    }
-  }
-
-  });
+        if (!isLoggedIn) {
+          setTimeout(() => this.openSignupOnce(), 3000);
+        }
+      }
   }
 
   async openSignupOnce() {

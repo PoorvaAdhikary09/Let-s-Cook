@@ -4,9 +4,9 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ModalController, ToastController } from '@ionic/angular/standalone';
 import { closeCircleOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
-import { Supabase } from 'src/app/Services/Supabase-Service/supabase';
 import { LoginFormComponent } from '../login-form/login-form.component';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
 
 @Component({
   selector: 'app-signup-form',
@@ -19,8 +19,8 @@ export class SignupFormComponent  implements OnInit {
   private fb = new FormBuilder();
   private modalCtrl= inject(ModalController);
   private toastCtrl: ToastController = inject(ToastController);
-  private supabaseService = inject(Supabase);
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
 
   signupForm = this.fb.group({
     username: ['', Validators.required],
@@ -37,29 +37,36 @@ export class SignupFormComponent  implements OnInit {
    async onSignup() {
     if (this.signupForm.invalid) return;
 
-    const user = {
-      name: this.signupForm.value.username,
-      email: this.signupForm.value.email,
-      password: this.signupForm.value.password,
-    };
+    const name = this.signupForm.value.username!;
+    const email = this.signupForm.value.email!;
+    const password = this.signupForm.value.password!;
 
-    const { data, error } = await this.supabaseService.signUp(
-      user.name!,
-      user.email!,
-      user.password!
-  );
+    const { data, error } = await this.authService.signup(
+      name,
+      email,
+      password
+    );
 
-  if (error) {
-    console.error(error.message);
+    if (error) {
+      const toast = await this.toastCtrl.create({
+        message: error.message || 'Signup failed. Please try again.',
+        duration: 3000,
+        cssClass: 'my-red-toast'
+      });
+      await toast.present();
+      return;
+    }
+
     const toast = await this.toastCtrl.create({
-      message: 'Signup failed. Please try again.',
+      message: 'Signup successful!',
       duration: 3000,
-      cssClass: 'my-red-toast'
+      cssClass: 'my-green-toast'
     });
     await toast.present();
-    return;
-  }
-    this.modalCtrl.dismiss(user, 'success');
+
+    this.modalCtrl.dismiss(data, 'success');
+
+    // Open login modal after signup
     this.onLogin();
   }
 
@@ -73,6 +80,6 @@ export class SignupFormComponent  implements OnInit {
 
   cancel() {
     this.modalCtrl.dismiss(null, 'cancel');
-    this.router.navigate(['/home']);
+    // this.router.navigate(['/']);
   }
 }
