@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonIcon, IonInput } from "@ionic/angular/standalone";
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ModalController } from '@ionic/angular/standalone';
@@ -12,6 +12,7 @@ import { closeOutline, linkOutline, logoFacebook, logoWhatsapp } from 'ionicons/
   templateUrl: './share-modal.component.html',
   styleUrls: ['./share-modal.component.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonIcon, IonInput],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [Clipboard, ModalController, ToastController]
 })
 export class ShareModalComponent {

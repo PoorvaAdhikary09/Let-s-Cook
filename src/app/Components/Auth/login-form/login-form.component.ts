@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, Validators,ReactiveFormsModule } from '@angular/forms';
 import { IonContent, IonInput, IonButton } from "@ionic/angular/standalone";
 import { ModalController, ToastController } from '@ionic/angular/standalone';
@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IonContent, IonInput, IonButton,ReactiveFormsModule],
 })
 export class LoginFormComponent  implements OnInit {

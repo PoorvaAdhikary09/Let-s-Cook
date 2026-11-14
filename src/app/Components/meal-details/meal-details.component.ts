@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonContent, IonChip, IonButton, IonHeader, IonIcon } from "@ionic/angular/standalone";
 import { MainService } from 'src/app/Services/main-service';
@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
   selector: 'app-meal-details',
   templateUrl: './meal-details.component.html',
   styleUrls: ['./meal-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IonContent, IonChip, IonButton, IonHeader, HeaderComponent, FooterComponent, IonIcon],
 })
 export class MealDetailsComponent  implements OnInit {

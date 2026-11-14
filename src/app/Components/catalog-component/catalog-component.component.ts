@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { IonContent, IonCard, IonSearchbar, IonHeader } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/Services/main-service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { FooterComponent } from "../footer/footer.component";
   selector: 'app-catalog-component',
   templateUrl: './catalog-component.component.html',
   styleUrls: ['./catalog-component.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IonContent, IonCard, IonSearchbar, FormsModule, IonHeader, HeaderComponent, FooterComponent],
 })
 export class CatalogComponentComponent implements OnInit {

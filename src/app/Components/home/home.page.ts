@@ -1,4 +1,4 @@
-import { Component, OnInit, inject,CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, OnInit, inject, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { IonContent, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel,IonHeader } from "@ionic/angular/standalone";
 import { register } from 'swiper/element/bundle';
 import { addIcons } from 'ionicons';
@@ -17,6 +17,7 @@ register()
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [ IonContent, IonButton, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonChip, IonLabel, RouterLink,HeaderComponent,FooterComponent,IonHeader],
+  changeDetection: ChangeDetectionStrategy.Eager,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePage implements OnInit, AfterViewInit{

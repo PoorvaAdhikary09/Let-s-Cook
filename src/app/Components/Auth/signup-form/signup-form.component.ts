@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { IonContent, IonButton, IonInput, IonButtons, IonIcon, IonToolbar, IonTitle } from "@ionic/angular/standalone";
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ModalController, ToastController } from '@ionic/angular/standalone';
@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, IonContent, IonButton, IonInput, IonButtons, IonIcon, IonToolbar, IonTitle],
 })
 export class SignupFormComponent  implements OnInit {

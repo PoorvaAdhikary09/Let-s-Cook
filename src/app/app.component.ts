@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { AppMenuComponent } from './Components/app-menu/app-menu.component';
 import { ModalController } from '@ionic/angular/standalone';
@@ -8,6 +8,7 @@ import { AuthService } from './Services/Auth-Service/auth-service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IonApp, IonRouterOutlet, AppMenuComponent],
 })
 export class AppComponent {

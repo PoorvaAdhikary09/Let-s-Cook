@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { IonContent, IonSearchbar, IonIcon, IonCard, IonChip, IonButton, IonButtons, IonToolbar, IonHeader } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import { fastFoodOutline, nutritionOutline } from 'ionicons/icons';
@@ -16,6 +16,7 @@ import { FooterComponent } from '../footer/footer.component';
   standalone: true,
   templateUrl: './explore-meals.component.html',
   styleUrls: ['./explore-meals.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IonContent, IonSearchbar, IonIcon, IonCard, IonChip, IonButton, IonButtons, IonToolbar, FormsModule, HeaderComponent, FooterComponent, IonHeader],
 })
 export class ExploreMealsComponent  implements OnInit {
