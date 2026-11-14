@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { IonToolbar, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton, IonBackButton } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import {enterOutline, fingerPrintOutline, menuOutline, shareSocialOutline} from 'ionicons/icons'
@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   imports: [IonToolbar, IonTitle, IonAvatar, IonIcon, IonButtons, IonButton, IonBackButton],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [ModalController]
 })
 export class HeaderComponent {

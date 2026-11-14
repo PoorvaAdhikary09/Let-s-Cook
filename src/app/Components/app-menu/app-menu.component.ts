@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonMenu, IonContent, IonItem, IonLabel, IonIcon, IonMenuToggle } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/Services/Auth-Service/auth-service';
   templateUrl: './app-menu.component.html',
   styleUrls: ['./app-menu.component.scss'],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IonMenu, IonContent, IonItem, IonLabel, RouterLink, IonIcon, IonMenuToggle],
 })
 export class AppMenuComponent {
